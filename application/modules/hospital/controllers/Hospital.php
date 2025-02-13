@@ -212,8 +212,8 @@ public function edit_hospital() {
 
         // Fetch the existing hospital data
         $existingHospital = $this->utility->get_hospital_by_id($id);
-
-        if (!$existingHospital || !isset($existingHospital['data'])) {
+       // print_r($existingHospital); die;
+        if (!$existingHospital || !isset($existingHospital['result'])) {
             echo json_encode(['status' => 'error', 'message' => 'Hospital not found']);
             return;
         }
@@ -236,7 +236,7 @@ public function edit_hospital() {
                 "notifications" => true
             ]
         ];
-
+  // print_r($hospitalData); die;
 
         // Call the utility method to update the hospital
         $result = $this->utility->update_hospital($id, $hospitalData);

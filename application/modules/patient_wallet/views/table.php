@@ -63,8 +63,8 @@
                                     </thead>
                                     <tbody>
                                         <pre><?php //print_r($patients); ?></pre> <!-- Debugging Output -->
-                                        <?php if (!empty($patients)): ?>
-                                        <?php $sn = 1; foreach ($patients as $patient): ?>
+                                        <?php if (!empty($patient_wallets)): ?>
+                                        <?php $sn = 1; foreach ($patient_wallets as $patient): ?>
                                         <tr>
                                             <td><?= $sn++; ?></td>
                                             <td><?= htmlspecialchars($patient['patientFirstName']); ?></td>
@@ -80,7 +80,7 @@
                                             <td><?= htmlspecialchars($patient['nin']); ?></td>
                                             <td><?= htmlspecialchars($patient['hospitalId']); ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('patient_wallet/edit_patient_wallet/' . $patient['id']); ?>" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="<?php echo base_url('patient_wallet/edits_patient_wallet/' . $patient['id']); ?>" class="btn btn-warning btn-sm">Edit</a>
                                                 <!-- <button class="btn btn-danger btn-sm delete-btn" 
                                                     data-id="<?= $patient['id']; ?>">Delete</button> -->
                                             </td>

@@ -1,4 +1,3 @@
-
 <section class="content">
     <div class="container">
         <h2 class="col-md-6 text-left">Edit Patient</h2>
@@ -7,74 +6,74 @@
         <?php echo form_open('patient_wallet/edit_patient_wallet', ['id' => 'patientForm']); ?>
         
         <!-- Hidden field for patient ID -->
-        <input type="hidden" name="id" value="<?= isset($patient['id']) ? $patient['id'] : ''; ?>">
+        <input type="hidden" name="id" value="<?= isset($patient_wallet['id']) ? $patient_wallet['id'] : ''; ?>">
         
         <div class="row clearfix">
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="patientFirstName" class="form-control" placeholder="First Name" value="<?= isset($patient['patientFirstName']) ? set_value('patientFirstName', $patient['patientFirstName']) : ''; ?>" required>
+                    <input type="text" name="patientFirstName" class="form-control" placeholder="First Name" value="<?= isset($patient_wallet['patientFirstName']) ? set_value('patientFirstName', $patient_wallet['patientFirstName']) : ''; ?>" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="patientLastName" class="form-control" placeholder="Last Name" value="<?= isset($patient['patientLastName']) ? set_value('patientLastName', $patient['patientLastName']) : ''; ?>" required>
+                    <input type="text" name="patientLastName" class="form-control" placeholder="Last Name" value="<?= isset($patient_wallet['patientLastName']) ? set_value('patientLastName', $patient_wallet['patientLastName']) : ''; ?>" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="patientMiddleName" class="form-control" placeholder="Middle Name" value="<?= isset($patient['patientMiddleName']) ? set_value('patientMiddleName', $patient['patientMiddleName']) : ''; ?>">
+                    <input type="text" name="patientMiddleName" class="form-control" placeholder="Middle Name" value="<?= isset($patient_wallet['patientMiddleName']) ? set_value('patientMiddleName', $patient_wallet['patientMiddleName']) : ''; ?>">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <select name="gender" class="form-control" required>
                         <option value="" disabled>Select Gender</option>
-                        <option value="Male" <?= isset($patient['gender']) && $patient['gender'] == 'Male' ? 'selected' : ''; ?>>Male</option>
-                        <option value="Female" <?= isset($patient['gender']) && $patient['gender'] == 'Female' ? 'selected' : ''; ?>>Female</option>
-                        <option value="Other" <?= isset($patient['gender']) && $patient['gender'] == 'Other' ? 'selected' : ''; ?>>Other</option>
+                        <option value="male" <?= isset($patient_wallet['gender']) && $patient_wallet['gender'] == 'Male' ? 'selected' : ''; ?>>Male</option>
+                        <option value="female" <?= isset($patient_wallet['gender']) && $patient_wallet['gender'] == 'Female' ? 'selected' : ''; ?>>Female</option>
+                        <option value="Other" <?= isset($patient_wallet['gender']) && $patient_wallet['gender'] == 'Other' ? 'selected' : ''; ?>>Other</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="date" name="dob" class="form-control" placeholder="Date of Birth" value="<?= isset($patient['dob']) ? set_value('dob', $patient['dob']) : ''; ?>" required>
+                    <input type="date" name="dob" class="form-control" placeholder="Date of Birth" value="<?= isset($patient_wallet['dob']) ? set_value('dob', $patient_wallet['dob']) : ''; ?>" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email" value="<?= isset($patient['email']) ? set_value('email', $patient['email']) : ''; ?>" required>
+                    <input type="email" name="email" class="form-control" placeholder="Email" value="<?= isset($patient_wallet['email']) ? set_value('email', $patient_wallet['email']) : ''; ?>" required>
                 </div>
             </div>
         </div>
         <div class="row clearfix">
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone Number" value="<?= isset($patient['phoneNumber']) ? set_value('phoneNumber', $patient['phoneNumber']) : ''; ?>" required>
+                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone Number" value="<?= isset($patient_wallet['phoneNumber']) ? set_value('phoneNumber', $patient_wallet['phoneNumber']) : ''; ?>" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="alternateNumber" class="form-control" placeholder="Alternate Phone Number" value="<?= isset($patient['alternateNumber']) ? set_value('alternateNumber', $patient['alternateNumber']) : ''; ?>">
+                    <input type="text" name="alternateNumber" class="form-control" placeholder="Alternate Phone Number" value="<?= isset($patient_wallet['alternateNumber']) ? set_value('alternateNumber', $patient_wallet['alternateNumber']) : ''; ?>">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="address" class="form-control" placeholder="Address" value="<?= isset($patient['address']) ? set_value('address', $patient['address']) : ''; ?>" required>
+                    <input type="text" name="address" class="form-control" placeholder="Address" value="<?= isset($patient_wallet['address']) ? set_value('address', $patient_wallet['address']) : ''; ?>" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="bvn" class="form-control" placeholder="BVN (Bank Verification Number)" value="<?= isset($patient['bvn']) ? set_value('bvn', $patient['bvn']) : ''; ?>">
+                    <input type="text" name="bvn" class="form-control" placeholder="BVN (Bank Verification Number)" value="<?= isset($patient_wallet['bvn']) ? set_value('bvn', $patient_wallet['bvn']) : ''; ?>">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="nin" class="form-control" placeholder="NIN (National Identification Number)" value="<?= isset($patient['nin']) ? set_value('nin', $patient['nin']) : ''; ?>">
+                    <input type="text" name="nin" class="form-control" placeholder="NIN (National Identification Number)" value="<?= isset($patient_wallet['nin']) ? set_value('nin', $patient_wallet['nin']) : ''; ?>">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="hospitalId" class="form-control" placeholder="Hospital ID" value="<?= isset($patient['hospitalId']) ? set_value('hospitalId', $patient['hospitalId']) : ''; ?>" required>
+                    <input type="text" name="hospitalId" class="form-control" placeholder="Hospital ID" value="<?= empty($_SESSION['hospital_id']) ? '' : $_SESSION['hospital_id']; ?>" required>
                 </div>
             </div>
             <div class="col-md-4">
@@ -85,6 +84,7 @@
         <?php echo form_close(); ?>
     </div>
 </section>
+
 
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

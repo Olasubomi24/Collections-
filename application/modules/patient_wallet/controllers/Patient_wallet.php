@@ -49,7 +49,7 @@ class Patient_wallet extends MX_Controller
                 "nin" => $this->input->post('nin'),
                 "hospitalId" => $this->input->post('hospitalId')
             ];
-     //print_r($patientData); die();
+    // print_r($patientData); die();
             // Call the API and capture the response
             $apiResponse = $this->utility->create_patient_wallet($patientData);
     
@@ -94,11 +94,13 @@ class Patient_wallet extends MX_Controller
 {
     $data['title'] = 'patient_wallets List';
     $patient_walletsData = $this->utility->get_patient_wallet();
-//print_r($patient_walletsData); die();
+//print_r($patient_walletsData['result']['items']); die();
     // Ensure the result contains data
-    $data['patient_wallets'] = isset($patient_walletsData['result']['data']) && is_array($patient_walletsData['result']['data']) 
-        ? $patient_walletsData['result']['data'] 
+    $data['patient_wallets'] = isset($patient_walletsData['result']['items']) && is_array($patient_walletsData['result']['items']) 
+        ? $patient_walletsData['result']['items'] 
         : [];
+       // print_r($data['patient_wallets']); die();
+
 
     $data['content_view'] = 'patient_wallet/table';
     $this->template->general_template($data);
@@ -134,31 +136,29 @@ public function edit_patient_wallet() {
 
         // Fetch the existing patient_wallet data
         $existingpatient_wallet = $this->utility->get_patient_wallet_by_id($id);
-
-        if (!$existingpatient_wallet || !isset($existingpatient_wallet['data'])) {
+  //print_r($existingpatient_wallet); die ;
+        if (!$existingpatient_wallet || !isset($existingpatient_wallet['result'])) {
             echo json_encode(['status' => 'error', 'message' => 'patient_wallet not found']);
             return;
         }
 
         // Update the patient_wallet data
         $patient_walletData = [
-            "patient_walletName" => $this->input->post('patient_walletName'),
-            "patient_walletAdminName" => $this->input->post('patient_walletAdminName'),
-            "patient_walletPhoneNumber" => $this->input->post('patient_walletPhoneNumber'),
-            "patient_walletEmail" => $this->input->post('patient_walletEmail'),
-            "patient_walletAddress" => $this->input->post('patient_walletAddress'),
-            "patient_walletCardInsuranceCommission" => $this->input->post('patient_walletCardInsuranceCommission'),
-            "patient_walletEWalletFundingCommission" => $this->input->post('patient_walletEWalletFundingCommission'),
-            "patient_walletCollectionCommission" => $this->input->post('patient_walletCollectionCommission'),
-            "domain" => $this->input->post('domain'),
-            "settings" => [
-                "theme" => "light",
-                "language" => "en",
-                "timezone" => "UTC",
-                "notifications" => true
-            ]
+            "patientFirstName" => $this->input->post('patientFirstName'),
+            "patientLastName" => $this->input->post('patientLastName'),
+            "patientMiddleName" => $this->input->post('patientMiddleName'),
+            "gender" => $this->input->post('gender'),
+            "dob" => $this->input->post('dob'),
+            "email" => $this->input->post('email'),
+            "phoneNumber" => $this->input->post('phoneNumber'),
+            "alternateNumber" => $this->input->post('alternateNumber'),
+            "address" => $this->input->post('address'),
+            "bvn" => $this->input->post('bvn'),
+            "nin" => $this->input->post('nin'),
+            "hospitalId" => $this->input->post('hospitalId')
         ];
-
+        
+       // print_r($patientData); die;
 
         // Call the utility method to update the patient_wallet
         $result = $this->utility->update_patient_wallet($id, $patient_walletData);
@@ -172,4 +172,6 @@ public function edit_patient_wallet() {
         show_404(); // Handle non-AJAX requests
     }
 }
+
+
 }

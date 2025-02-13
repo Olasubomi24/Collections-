@@ -46,11 +46,12 @@ class Auth extends MX_Controller
             $session_data = array(
                 'email' => $output['response']['result']['user']['email'],
                 'username' => $output['response']['result']['user']['userName'],
+                'hospital_id' => $output['response']['result']['user']['hospitalId'],
                 'access_token' => $output['response']['result']['access_token'],
                 'logged_in' => TRUE
             );
             $this->session->set_userdata($session_data);
-    
+     //print_r($session_data); 
             echo json_encode([
                 "status" => "success",
                 "message" => $output['response']['message'],

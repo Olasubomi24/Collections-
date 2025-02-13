@@ -50,7 +50,7 @@ class Wallet_funding extends MX_Controller
     
             // Call the API and capture the response
             $apiResponse = $this->utility->create_wallet_funding($walletFundingData);
-    
+            print_r($apiResponse); die();
             // Check if the response is already an array
             if (is_array($apiResponse)) {
                 $responseData = $apiResponse;
@@ -92,10 +92,10 @@ class Wallet_funding extends MX_Controller
 {
     $data['title'] = 'wallet_fundings List';
     $wallet_fundingsData = $this->utility->get_wallet_funding();
-//print_r($wallet_fundingsData); die();
+//print_r($wallet_fundingsData['result']); die();
     // Ensure the result contains data
-    $data['wallet_fundings'] = isset($wallet_fundingsData['result']['data']) && is_array($wallet_fundingsData['result']['data']) 
-        ? $wallet_fundingsData['result']['data'] 
+    $data['wallet_fundings'] = isset($wallet_fundingsData['result']['items']) && is_array($wallet_fundingsData['result']['items']) 
+        ? $wallet_fundingsData['result']['items'] 
         : [];
 
     $data['content_view'] = 'wallet_funding/table';
@@ -133,7 +133,7 @@ public function edit_wallet_funding() {
         // Fetch the existing wallet_funding data
         $existingwallet_funding = $this->utility->get_wallet_funding_by_id($id);
 
-        if (!$existingwallet_funding || !isset($existingwallet_funding['data'])) {
+        if (!$existingwallet_funding || !isset($existingwallet_funding['items'])) {
             echo json_encode(['status' => 'error', 'message' => 'wallet_funding not found']);
             return;
         }

@@ -23,7 +23,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <h2><a href="<?php echo base_url('settlement/adds_settlement'); ?>"><strong>Settlement</strong></a>
+                            <h2><a
+                                    href="<?php echo base_url('settlement/adds_settlement'); ?>"><strong>Settlement</strong></a>
                             </h2>
                             <ul class="header-dropdown">
                                 <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
@@ -63,14 +64,15 @@
                                             <td><?= htmlspecialchars($settlement['hospitalId']); ?></td>
                                             <td><?= htmlspecialchars($settlement['merchantId']); ?></td>
                                             <td><?= htmlspecialchars($settlement['merchantAccount']); ?></td>
-                                            <td><?= htmlspecialchars(number_format($settlement['settlementAmount'], 2)) . ' ' . ($currencySymbol ?? '₦'); ?>
+                                            <td><?= htmlspecialchars(($currencySymbol ?? '₦') . ' ' . number_format($settlement['settlementAmount'], 2)); ?>
                                             </td>
+
                                             <td><?= htmlspecialchars($settlement['merchantBank']); ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('settlement/edit_settlement/' . $settlement['id']); ?>"
+                                                <a href="<?php echo base_url('settlement/edits_settlement/' . $settlement['id']); ?>"
                                                     class="btn btn-warning btn-sm">Edit</a>
-                                                <button class="btn btn-danger btn-sm delete-btn"
-                                                    data-id="<?= $settlement['id']; ?>">Delete</button>
+                                                <!-- <button class="btn btn-danger btn-sm delete-btn"
+                                                    data-id="<?= $settlement['id']; ?>">Delete</button> -->
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>

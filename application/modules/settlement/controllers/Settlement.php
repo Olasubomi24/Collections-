@@ -93,10 +93,10 @@ class Settlement extends MX_Controller
 {
     $data['title'] = 'settlements List';
     $settlementsData = $this->utility->get_settlement();
-    //print_r($settlementsData); die();
+   // print_r($settlementsData); die();
     // Ensure the result contains data
-    $data['settlements'] = isset($settlementsData['result']['data']) && is_array($settlementsData['result']['data']) 
-        ? $settlementsData['result']['data'] 
+    $data['settlements'] = isset($settlementsData['result']['items']) && is_array($settlementsData['result']['items']) 
+        ? $settlementsData['result']['items'] 
         : [];
 
     $data['content_view'] = 'settlement/table';
@@ -110,7 +110,7 @@ class Settlement extends MX_Controller
     public function edits_settlement($id = null) {
         // Fetch the settlement data by ID
         $apiResponse = $this->utility->get_settlement_by_id($id);
-   // print_r($apiResponse); die();
+   //print_r($apiResponse); die();
         $data = array(
             'title' => 'Edit settlement',
             'content_view' => 'settlement/edit',
@@ -133,8 +133,8 @@ class Settlement extends MX_Controller
 
         // Fetch the existing settlement data
         $existingsettlement = $this->utility->get_settlement_by_id($id);
-
-        if (!$existingsettlement || !isset($existingsettlement['data'])) {
+  
+        if (!$existingsettlement || !isset($existingsettlement['result'])) {
             echo json_encode(['status' => 'error', 'message' => 'settlement not found']);
             return;
         }
@@ -147,7 +147,7 @@ class Settlement extends MX_Controller
                 "settlementAmount" => $this->input->post('settlementAmount'),
                 "merchantBank" => $this->input->post('merchantBank'),
         ];
-
+     //print_r($settlementData); die();
 
         // Call the utility method to update the settlement
         $result = $this->utility->update_settlement($id, $settlementData);
