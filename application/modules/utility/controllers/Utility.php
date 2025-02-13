@@ -284,6 +284,33 @@ public function update_user($id, $data)
     //     return  json_decode($callApi, true);
     // }
 
+
+
+    public function get_user_profile()
+    {
+        $url = "https://api.macrotech.com.ng/api/v1/users/profile";
+        $response = $this->call_apis('GET', $url);
+       // print_r($response); die;    
+        return  $response;
+    }
+    
+    // public function get_user_profile_by_id($id)
+    // {
+    //     return $this->call_apis('GET', "https://api.macrotech.com.ng/api/v1/users/$id");
+    // }
+    
+    public function update_user_profile($data)
+    {
+        return $this->call_apis('PATCH', "https://api.macrotech.com.ng/api/v1/users/profile", $data);
+    }
+
+    public function change_user_profile($data)
+    {
+        return $this->call_apis('PATCH', "https://api.macrotech.com.ng/api/v1/users/change-password", $data);
+    }
+    
+    
+
     // public function update_profile($var){
     //     $url = collection_url . "update_user_account";
     //     $callAPi = $this ->call_api('Q_POST',$url,$var);
