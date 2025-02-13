@@ -46,7 +46,7 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable  ">
                                     <thead>
                                         <tr>
-                                            <th>S/N</th>
+                                            <th>S/N </th>
                                             <th>Hospital ID</th>
                                             <th>E-Wallet Account</th>
                                             <th>Patient Phone Number</th>
