@@ -3,7 +3,7 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>User</h2>
+                    <h2>Table</h2>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i
                             class="zmdi zmdi-sort-amount-desc"></i></button>
 
@@ -23,61 +23,46 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <h2><a
-                                    href="<?php echo base_url('user/adds_user'); ?>"><strong>User</strong></a>
-                            </h2>
+                            <h2><strong>Tables</strong></h2>
                             <ul class="header-dropdown">
                                 <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
                                         data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="zmdi zmdi-more"></i> </a>
-                                    <!-- <ul class="dropdown-menu dropdown-menu-right slideUp">
+                                    <ul class="dropdown-menu dropdown-menu-right slideUp">
                                         <li><a href="javascript:void(0);">Action</a></li>
                                         <li><a href="javascript:void(0);">Another action</a></li>
                                         <li><a href="javascript:void(0);">Something else</a></li>
-                                    </ul> -->
+                                    </ul>
                                 </li>
-                                <!-- <li class="remove">
+                                <li class="remove">
                                     <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                                </li> -->
+                                </li>
                             </ul>
                         </div>
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable  ">
-                                    <thead>
-                                        <tr>
+                                    <thead class="">
+                                        <tr class="">
                                             <th>S/N</th>
-                                            <th>Email</th>
-                                            <th>User Name</th>
-                                            <th>User Phone Number</th>
-                                            <th>Hospital ID</th>
-                                            <th>Role ID</th>
+                                            <th>Name</th>
+                                            <th>Acquisition Amount</th>
+                                            <th>DNS Server</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
-                                        <pre><?php //print_r($users); ?></pre> <!-- Debugging Output -->
-                                        <?php if (!empty($users)): ?>
-                                        <?php $sn = 1; foreach ($users as $user): ?>
+
                                         <tr>
-                                            <td><?= $sn++; ?></td>
-                                            <td><?= htmlspecialchars($user['email']); ?></td>
-                                            <td><?= htmlspecialchars($user['userName']); ?></td>
-                                            <td><?= htmlspecialchars($user['userPhoneNumber']); ?></td>
-                                            <td><?= htmlspecialchars($user['hospitalId']); ?></td>
-                                            <td><?= htmlspecialchars($user['roleId']); ?></td>
-                                            <td>
-                                                <a href="<?php echo base_url('user/edits_user/' . $user['id']); ?>"
-                                                    class="btn btn-warning btn-sm">Edit</a>
-                                         
-                                            </td>
+
+                                            <td>MM</td>
+                                            <td>YY</td>
+                                            <td>HH</td>
+                                            <td>Hh</td>
+                                            <td>Hh</td>
                                         </tr>
-                                        <?php endforeach; ?>
-                                        <?php else: ?>
-                                        <tr>
-                                            <td colspan="7" class="text-center">No users found</td>
-                                        </tr>
-                                        <?php endif; ?>
+
                                     </tbody>
                                 </table>
                             </div>

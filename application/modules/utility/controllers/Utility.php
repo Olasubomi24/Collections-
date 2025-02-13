@@ -225,7 +225,7 @@ public function update_settlement($id, $data)
 
 public function get_collection()
 {
-    $url = "https://api.macrotech.com.ng/api/v1/settlements";
+    $url = "https://api.macrotech.com.ng/api/v1/webhook/notifications";
     $response = $this->call_apis('GET', $url);
    // print_r($response); die;    
     return  $response;
@@ -316,7 +316,18 @@ public function update_user($id, $data)
     //     $callAPi = $this ->call_api('Q_POST',$url,$var);
     //     return json_decode($callAPi,true);
     // }
+    public function get_audit()
+    {
+        $url = "https://api.macrotech.com.ng/api/v1/audit-trail";
+        $response = $this->call_apis('GET', $url);
+       // print_r($response); die;    
+        return  $response;
+    }
 
+    public function get_audit_by_id($id)
+{
+    return $this->call_apis('GET', "https://api.macrotech.com.ng/api/v1/users/$id");
+}
     // public function getbanklist(){
     //   $url = collection_url . "ngn_bank";
     //   $callAPi = $this->call_api('GET',$url,'');

@@ -58,8 +58,8 @@ if (!isset($_SESSION['email'])) {
             <li class="active open"><a href="<?php echo base_url('patient_wallet/index'); ?>"><i class="zmdi zmdi-home"></i><span>Patient</span></a></li>
             <li class="active open"><a href="<?php echo base_url('settlement/index'); ?>"><i class="zmdi zmdi-home"></i><span>Settlements</span></a></li>
             <li class="active open"><a href="<?php echo base_url('wallet_funding/index'); ?>"><i class="zmdi zmdi-home"></i><span>Wallet Funding</span></a></li>
-              
-                    <li><a href="<?php echo base_url('wallet_funding/index'); ?>">wallet funding</a></li>
+            <li class="active open"><a href="<?php echo base_url('audit/index'); ?>"><i class="zmdi zmdi-home"></i><span>Audit</span></a></li>
+            <li class="active open"><a href="<?php echo base_url('collection/index'); ?>"><i class="zmdi zmdi-home"></i><span>Collection</span></a></li>
             <a href="<?php echo site_url('auth/sign_out') ?>" class="dropdown-item">
 								<i data-feather="power"></i>
 								<span>Logout</span>

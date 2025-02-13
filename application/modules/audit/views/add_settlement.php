@@ -1,61 +1,57 @@
 <section class="content">
     <div class="container">
-        <h2>Add User</h2>
-        <p><a href="<?php echo base_url('user/index'); ?>">users</a></p>
+        <h2>Add Settlement</h2>
+        <p><a href="<?php echo base_url('settlement/index'); ?>">Settlements</a></p>
         
-        <?php echo form_open('user/add_user', ['id' => 'userForm']); ?>
+        <?php echo form_open('settlement/add_settlement', ['id' => 'settlementForm']); ?>
         
         <div class="row clearfix">
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                    <input type="text" name="hospitalId" class="form-control" placeholder="Hospital ID" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                    <input type="text" name="merchantId" class="form-control" placeholder="Merchant ID" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="userName" class="form-control" placeholder="User Name" required>
+                    <input type="text" name="merchantAccount" class="form-control" placeholder="Merchant Account" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="userPhoneNumber" class="form-control" placeholder="User Phone Number" required>
+                    <input type="number" step="0.01" name="settlementAmount" class="form-control" placeholder="Settlement Amount" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="hospitalId" class="form-control" placeholder="Hospital ID"  value="<?= empty($_SESSION['hospital_id']) ? '' : $_SESSION['hospital_id']; ?>"  required>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" name="roleId" class="form-control" placeholder="Role ID" required>
+                    <input type="text" name="merchantBank" class="form-control" placeholder="Merchant Bank" required>
                 </div>
             </div>
         </div>
         <div class="row clearfix">
             <div class="col-md-4">
-                <button type="submit" class="btn btn-success mt-2">Add user</button>
+                <button type="submit" class="btn btn-success mt-2">Add Settlement</button>
             </div>
         </div>
         
         <?php echo form_close(); ?>
     </div>
 </section>
+
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert -->
 <script>
 $(document).ready(function () {
-    $('#userForm').submit(function (event) {
+    $('#settlementForm').submit(function (event) {
         event.preventDefault(); // Prevent default form submission
         let formData = $(this).serialize(); // Serialize form data
         $.ajax({
-            url: "<?php echo base_url('user/add_user'); ?>",
+            url: "<?php echo base_url('settlement/add_settlement'); ?>",
             type: "POST",
             data: formData,
             dataType: "json",
@@ -63,7 +59,7 @@ $(document).ready(function () {
                 console.log("Response received:", response); // Debugging
                 if (response.status === 'success') {
                     Swal.fire("Success!", response.message, "success")
-                        .then(() => window.location.href = "<?php echo base_url('user/index'); ?>");
+                        .then(() => window.location.href = "<?php echo base_url('settlement/index'); ?>");
                 } else {
                     Swal.fire("Error!", response.message, "error");
                 }

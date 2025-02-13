@@ -34,54 +34,39 @@ class User extends MX_Controller
     public function add_user()
     {
         if ($this->input->post()) {
-            // Collect and map the input data to the new structure
-            $walletFundingData = [
+            // Collect and map the input data based on the provided credentials structure
+            $userData = [
+                "email" => $this->input->post('email'),
+                "password" => $this->input->post('password'),
+                "userName" => $this->input->post('userName'),
+                "userPhoneNumber" => $this->input->post('userPhoneNumber'),
                 "hospitalId" => $this->input->post('hospitalId'),
-                "eWalletAccount" => $this->input->post('eWalletAccount'),
-                "patientPhoneNumber" => $this->input->post('patientPhoneNumber'),
-                "amount" => $this->input->post('amount'),
-                "terminalId" => $this->input->post('terminalId'),
-                "rrn" => $this->input->post('rrn'),
-                "pan" => $this->input->post('pan'),
-                "paymentMethod" => $this->input->post('paymentMethod'),
-                "issuer" => $this->input->post('issuer')
-
+                "roleId" => $this->input->post('roleId')
             ];
     
             // Uncomment the line below for debugging purposes
-            // print_r($walletFundingData); die();
+            // print_r($userData); die();
     
-            // Call the API and capture the response
-            $apiResponse = $this->utility->create_user($walletFundingData);
+            // Call the API to create the user and capture the response
+            $apiResponse = $this->utility->create_user($userData);
     
-            // Check if the response is already an array
-            if (is_array($apiResponse)) {
-                $responseData = $apiResponse;
-            } else {
-                // Decode the JSON string if it's not already an array
-                $responseData = json_decode($apiResponse, true);
-            }
+            // Decode the JSON response
+            $responseData = is_array($apiResponse) ? $apiResponse : json_decode($apiResponse, true);
     
             if ($responseData && isset($responseData['status']) && $responseData['status'] == 'success') {
                 echo json_encode([
                     'status' => 'success',
-                    'message' => 'Wallet funding initiated successfully.'
+                    'message' => 'User successfully added.'
                 ]);
             } else {
-                $errorMessage = isset($responseData['message']) ? $responseData['message'] : 'An error occurred while initiating wallet funding.';
                 echo json_encode([
                     'status' => 'error',
-                    'message' => $errorMessage
+                    'message' => isset($responseData['message']) ? $responseData['message'] : 'Failed to add user.'
                 ]);
             }
-            exit();
-        } else {
-            // Load the form view for adding wallet funding
-            $data['title'] = 'Add Wallet Funding';
-            $data['content_view'] = 'user/add_user'; // Update the view file name as needed
-            $this->template->general_template($data);
         }
     }
+    
     // public function index()
     // {
     //     $data['title'] = 'users List';

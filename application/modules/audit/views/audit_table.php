@@ -3,7 +3,7 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>User</h2>
+                    <h2>Wallet Funding</h2>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i
                             class="zmdi zmdi-sort-amount-desc"></i></button>
 
@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="header">
                             <h2><a
-                                    href="<?php echo base_url('user/adds_user'); ?>"><strong>User</strong></a>
+                                    href="<?php echo base_url('settlement/adds_settlement'); ?>"><strong>Settlement</strong></a>
                             </h2>
                             <ul class="header-dropdown">
                                 <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
@@ -47,35 +47,38 @@
                                     <thead>
                                         <tr>
                                             <th>S/N</th>
-                                            <th>Email</th>
-                                            <th>User Name</th>
-                                            <th>User Phone Number</th>
                                             <th>Hospital ID</th>
-                                            <th>Role ID</th>
+                                            <th>Merchant ID</th>
+                                            <th>Merchant Account</th>
+                                            <th>Settlement Amount</th>
+                                            <th>Merchant Bank</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <pre><?php //print_r($users); ?></pre> <!-- Debugging Output -->
-                                        <?php if (!empty($users)): ?>
-                                        <?php $sn = 1; foreach ($users as $user): ?>
+                                        <pre><?php //print_r($settlements); ?></pre> <!-- Debugging Output -->
+                                        <?php if (!empty($settlements)): ?>
+                                        <?php $sn = 1; foreach ($settlements as $settlement): ?>
                                         <tr>
                                             <td><?= $sn++; ?></td>
-                                            <td><?= htmlspecialchars($user['email']); ?></td>
-                                            <td><?= htmlspecialchars($user['userName']); ?></td>
-                                            <td><?= htmlspecialchars($user['userPhoneNumber']); ?></td>
-                                            <td><?= htmlspecialchars($user['hospitalId']); ?></td>
-                                            <td><?= htmlspecialchars($user['roleId']); ?></td>
+                                            <td><?= htmlspecialchars($settlement['hospitalId']); ?></td>
+                                            <td><?= htmlspecialchars($settlement['merchantId']); ?></td>
+                                            <td><?= htmlspecialchars($settlement['merchantAccount']); ?></td>
+                                            <td><?= htmlspecialchars(($currencySymbol ?? '₦') . ' ' . number_format($settlement['settlementAmount'], 2)); ?>
+                                            </td>
+
+                                            <td><?= htmlspecialchars($settlement['merchantBank']); ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('user/edits_user/' . $user['id']); ?>"
+                                                <a href="<?php echo base_url('settlement/edits_settlement/' . $settlement['id']); ?>"
                                                     class="btn btn-warning btn-sm">Edit</a>
-                                         
+                                                <!-- <button class="btn btn-danger btn-sm delete-btn"
+                                                    data-id="<?= $settlement['id']; ?>">Delete</button> -->
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
                                         <?php else: ?>
                                         <tr>
-                                            <td colspan="7" class="text-center">No users found</td>
+                                            <td colspan="7" class="text-center">No settlements found</td>
                                         </tr>
                                         <?php endif; ?>
                                     </tbody>

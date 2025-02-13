@@ -23,9 +23,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <h2><a
-                                    href="<?php echo base_url('settlement/adds_settlement'); ?>"><strong>Settlement</strong></a>
-                            </h2>
+                            <!-- <h2><a
+                                    href="<?php //echo base_url('settlement/adds_settlement'); ?>"><strong>Settlement</strong></a>
+                            </h2> -->
                             <ul class="header-dropdown">
                                 <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
                                         data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

@@ -141,7 +141,7 @@ class User_profile extends MX_Controller
 {
     $data['title'] = 'user_profiles List';
     $user_profilesData = $this->utility->get_user_profile();
-    //print_r($user_profilesData); die();
+    print_r($user_profilesData); die();
     // Ensure the result contains data
     $data['user_profiles'] = isset($user_profilesData['result']['data']) && is_array($user_profilesData['result']['data']) 
         ? $user_profilesData['result']['data'] 
