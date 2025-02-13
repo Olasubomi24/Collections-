@@ -1,23 +1,23 @@
 <section class="content">
     <div class="container">
         <h2>Change Password</h2>
-        <p><a href="<?php echo base_url('user_profile/index'); ?>">User Profile</a></p>
+        <p><a href="<?php echo base_url('user_profile/index'); ?>">Back to Dashboard</a></p>
 
         <?php echo form_open('user_profile/change_user_password', ['id' => 'changePasswordForm']); ?>
 
         <div class="row clearfix">
             <div class="col-md-6">
                 <div class="form-group">
+                    <label for="userName">User Name</label>
+                    <input type="text" id="userName" name="userName" class="form-control" value="<?php echo $_SESSION['username']; ?>" readonly>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" id="email" name="email" class="form-control" value="<?php echo $_SESSION['email']; ?>" readonly>
                 </div>
             </div>
-            <!-- <div class="col-md-6">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
-                </div>
-            </div> -->
         </div>
         <div class="row clearfix">
             <div class="col-md-6">
