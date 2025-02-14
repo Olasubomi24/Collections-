@@ -1,0 +1,62 @@
+name: Deploy Frontend to Ubuntu
+
+on:
+  push:
+    branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, intl, json, xml
+        
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+      
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-dev
+      
+    - name: Deploy to Ubuntu server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          # Create deployment directory if it doesn't exist
+          sudo mkdir -p /var/www/collection-frontend
+          
+          # Deploy new code
+          cd /var/www/collection-frontend
+          sudo git pull origin main
+          
+          # Install dependencies
+          sudo composer install --no-dev --optimize-autoloader
+          
+          # Set proper permissions
+          sudo chown -R www-data:www-data /var/www/collection-frontend
+          sudo chmod -R 755 /var/www/collection-frontend
+          
+          # Create Nginx configuration if it doesn't exist
+          if [ ! -f /etc/nginx/conf.d/collection-frontend.conf ]; then
+            sudo cp /var/www/collection-frontend/nginx.conf /etc/nginx/conf.d/collection-frontend.conf
+          fi
+          
+          # Test Nginx configuration
+          sudo nginx -t
+          
+          # Reload Nginx to apply changes
+          sudo systemctl reload nginx
+          
+          # Restart PHP-FPM
+          sudo systemctl restart php8.2-fpm
