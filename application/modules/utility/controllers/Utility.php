@@ -223,12 +223,34 @@ public function update_settlement($id, $data)
     return $this->call_apis('PUT', "https://api.macrotech.com.ng/api/v1/settlements/$id", $data);
 }
 
-public function get_collection()
+// public function get_collection()
+// {
+//     $url = "https://api.macrotech.com.ng/api/v1/webhook/notifications";
+//     $response = $this->call_apis('GET', $url);
+//    // print_r($response); die;    
+//     return  $response;
+// }
+
+public function get_collection($dateRange = [])
 {
     $url = "https://api.macrotech.com.ng/api/v1/webhook/notifications";
+
+    // Append query parameters if startDate and/or endDate are provided
+    $queryParams = [];
+    if (isset($dateRange['start_dt'])) {
+        $queryParams['startDate'] = $dateRange['start_dt'];
+    }
+    if (isset($dateRange['end_dt'])) {
+        $queryParams['endDate'] = $dateRange['end_dt'];
+    }
+
+    if (!empty($queryParams)) {
+        $url .= '?' . http_build_query($queryParams);
+    }
+
+    // Call the API
     $response = $this->call_apis('GET', $url);
-   // print_r($response); die;    
-    return  $response;
+    return $response;
 }
 
 public function get_collection_by_id($id)

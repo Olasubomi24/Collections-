@@ -91,19 +91,94 @@ class Collection extends MX_Controller
     //     $this->template->general_template($data);
     // }
 
-    public function index()
-{
-    $data['title'] = 'collections List';
-    $collectionsData = $this->utility->get_collection();
-    //print_r($collectionsData); die();
-    // Ensure the result contains data
-    $data['collections'] = isset($collectionsData['result']['data']) && is_array($collectionsData['result']['data']) 
-        ? $collectionsData['result']['data'] 
-        : [];
+//     public function index()
+// {
+//     $data['title'] = 'collections List';
+//     $collectionsData = $this->utility->get_collection();
+//     //print_r($collectionsData); die();
+//     // Ensure the result contains data
+//     $data['collections'] = isset($collectionsData['result']['data']) && is_array($collectionsData['result']['data']) 
+//         ? $collectionsData['result']['data'] 
+//         : [];
 
-    $data['content_view'] = 'collection/table';
+//     $data['content_view'] = 'collection/table';
+//     $this->template->general_template($data);
+// }
+
+// public function index()
+// {
+//     // Get startDate and endDate from the POST request (if submitted)
+//     $start_dt = $this->input->post('startDate');
+//     $end_dt = $this->input->post('endDate');
+
+//     // Convert the dates to YYYY-MM-DD format if provided
+//     $formattedStartDate = !empty($start_dt) ? (new DateTime($start_dt))->format('Y-m-d') : '';
+//     $formattedEndDate = !empty($end_dt) ? (new DateTime($end_dt))->format('Y-m-d') : '';
+
+//     // Store the formatted dates in an array
+//     $dateRange = [
+//         'start_dt' => $formattedStartDate,
+//         'end_dt' => $formattedEndDate
+//     ];
+
+//     // Fetch collections data with optional start_dt and end_dt
+//     $collectionsData = $this->utility->get_collection($dateRange);
+
+//     // Ensure the result contains data
+//     $network_result = isset($collectionsData['result']['data']) && is_array($collectionsData['result']['data'])
+//         ? $collectionsData['result']['data']
+//         : [];
+
+//     // Prepare data for the view
+//     $data = [
+//         'title' => 'Dashboard',
+//         'content_view' => 'collection/table',
+//         'network_result' => $network_result,
+//         'start_dt' => $start_dt, // Pass the raw start date to the view
+//         'end_dt' => $end_dt     // Pass the raw end date to the view
+//     ];
+
+//     // Load the general template and pass in the data
+//     $this->template->general_template($data);
+// }
+
+public function index()
+{
+    // Initialize variables for start and end date
+    $startDate = $this->input->post('startDate');
+    $endDate = $this->input->post('endDate');
+
+    // Convert dates to YYYY-MM-DD or use default if empty
+    $formattedStartDate = !empty($startDate) ? (new DateTime($startDate))->format('Y-m-d') : null;
+    $formattedEndDate = !empty($endDate) ? (new DateTime($endDate))->format('Y-m-d') : null;
+
+    // Prepare the date range array
+    $dateRange = [];
+    if ($formattedStartDate) {
+        $dateRange['start_dt'] = $formattedStartDate;
+    }
+    if ($formattedEndDate) {
+        $dateRange['end_dt'] = $formattedEndDate;
+    }
+
+    // Fetch the collections data
+    $collectionsData = $this->utility->get_collection($dateRange);
+    $network_result = $collectionsData['result']['data'] ?? [];
+
+    // Pass the variables to the view
+    $data = [
+        'title' => 'Dashboard',
+        'content_view' => 'collection/table',
+        'network_result' => $network_result,
+        'start_dt' => $startDate,  // Pass the original start date for the form
+        'end_dt' => $endDate       // Pass the original end date for the form
+    ];
+
+    // Load the template
     $this->template->general_template($data);
 }
+
+
 
 
 

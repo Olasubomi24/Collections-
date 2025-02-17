@@ -41,7 +41,7 @@ class Auth extends MX_Controller
         );
 
         $output = $this->utility->user_login($var);
-        //print_r($output['response']['status']); die();
+       // print_r($output['response']['status']); die();
         if ($output['response']['status'] == 'success') {  
             $session_data = array(
                 'email' => $output['response']['result']['user']['email'],

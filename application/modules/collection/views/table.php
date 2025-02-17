@@ -14,7 +14,31 @@
                 </div>
             </div>
         </div>
-
+        <div class="container">
+        <?php echo form_open('collection/index');     ?>
+            <div class="row clearfix">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" name="startDate" class="form-control" id="startDate" 
+                               value="<?= htmlspecialchars($start_dt ?? '') ?>">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <input type="date" name="endDate" class="form-control" id="endDate" 
+                               value="<?= htmlspecialchars($end_dt ?? '') ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success mt-2">Submit</button>
+                </div>
+            </div>
+            <?php echo form_close();  ?>
+        </div>
         <div class="container-fluid">
             <!-- Basic Examples -->
 
@@ -44,7 +68,7 @@
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable  ">
-                                    <thead>
+                                <thead>
                                         <tr>
                                             <th>S/N</th>
                                             <th>Invoice No</th>
@@ -79,49 +103,45 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (!empty($collections)): ?>
-                                        <?php $sn = 1; foreach ($collections as $collection): ?>
-                                        <tr>
-                                            <td><?= $sn++; ?></td>
-                                            <td><?= htmlspecialchars($collection['invoiceNo']); ?></td>
-                                            <td><?= htmlspecialchars($collection['invoiceDescription']); ?></td>
-                                            <td><?= htmlspecialchars($collection['rrrNo']); ?></td>
-                                            <td><?= htmlspecialchars($collection['invoiceDate']); ?></td>
-                                            <td><?= htmlspecialchars($collection['invoiceUHID']); ?></td>
-                                            <td><?= htmlspecialchars($collection['invoiceItems']); ?></td>
-                                            <td><?= htmlspecialchars($collection['invoicePayerName']); ?></td>
-                                            <td><?= htmlspecialchars($collection['invoicePayerPhoneNo']); ?></td>
-                                            <td><?= htmlspecialchars($collection['invoicePayerEmail']); ?></td>
-                                            <td><?= htmlspecialchars(number_format($collection['invoiceAmount'], 2)) . ' ' . ($currencySymbol ?? '₦'); ?>
-                                            </td>
-                                            <td><?= htmlspecialchars(number_format($collection['invoiceEstCharges'], 2)) . ' ' . ($currencySymbol ?? '₦'); ?>
-                                            </td>
-                                            <td><?= htmlspecialchars(number_format($collection['invoiceTotalPayable'], 2)) . ' ' . ($currencySymbol ?? '₦'); ?>
-                                            </td>
-                                            <td><?= htmlspecialchars(number_format($collection['amountDebited'], 2)) . ' ' . ($currencySymbol ?? '₦'); ?>
-                                            </td>
-                                            <td><?= htmlspecialchars($collection['debitDate']); ?></td>
-                                            <td><?= htmlspecialchars($collection['channel']); ?></td>
-                                            <td><?= htmlspecialchars($collection['channelID']); ?></td>
-                                            <td><?= htmlspecialchars($collection['transactionID']); ?></td>
-                                            <td><?= htmlspecialchars($collection['rrn']); ?></td>
-                                            <td><?= htmlspecialchars($collection['stan']); ?></td>
-                                            <td><?= htmlspecialchars($collection['notificationCode']); ?></td>
-                                            <td><?= htmlspecialchars($collection['notificationMessage']); ?></td>
-                                            <td><?= htmlspecialchars($collection['amountSplit']); ?></td>
-                                            <td><?= htmlspecialchars($collection['remarks']); ?></td>
-                                            <td><?= htmlspecialchars($collection['bank']); ?></td>
-                                            <td><?= htmlspecialchars($collection['paymentInstrument']); ?></td>
-                                            <td><?= htmlspecialchars($collection['cardHolder']); ?></td>
-                                            <td><?= htmlspecialchars($collection['cardScheme']); ?></td>
-                                            <td><?= htmlspecialchars($collection['cardPAN']); ?></td>
-                                            <td><?= htmlspecialchars($collection['cardExpiry']); ?></td>
-                                        </tr>
-                                        <?php endforeach; ?>
+                                        <?php if (!empty($network_result)): ?>
+                                            <?php $sn = 1; foreach ($network_result as $collection): ?>
+                                                <tr>
+                                                    <td><?= $sn++; ?></td>
+                                                    <td><?= htmlspecialchars($collection['invoiceNo']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['invoiceDescription']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['rrrNo']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['invoiceDate']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['invoiceUHID']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['invoiceItems']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['invoicePayerName']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['invoicePayerPhoneNo']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['invoicePayerEmail']); ?></td>
+                                                    <td><?= number_format($collection['invoiceAmount'], 2) . ' ' . ($currencySymbol ?? '₦'); ?></td>
+                                                    <td><?= number_format($collection['invoiceEstCharges'], 2) . ' ' . ($currencySymbol ?? '₦'); ?></td>
+                                                    <td><?= number_format($collection['invoiceTotalPayable'], 2) . ' ' . ($currencySymbol ?? '₦'); ?></td>
+                                                    <td><?= number_format($collection['amountDebited'], 2) . ' ' . ($currencySymbol ?? '₦'); ?></td>
+                                                    <td><?= htmlspecialchars($collection['debitDate']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['channel']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['channelID']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['transactionID']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['rrn']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['stan']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['notificationCode']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['notificationMessage']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['amountSplit']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['remarks']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['bank']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['paymentInstrument']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['cardHolder']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['cardScheme']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['cardPAN']); ?></td>
+                                                    <td><?= htmlspecialchars($collection['cardExpiry']); ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         <?php else: ?>
-                                        <tr>
-                                            <td colspan="30" class="text-center">No collections found</td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="30" class="text-center">No collections found</td>
+                                            </tr>
                                         <?php endif; ?>
                                     </tbody>
 
