@@ -47,6 +47,9 @@ class Auth extends MX_Controller
                 'email' => $output['response']['result']['user']['email'],
                 'username' => $output['response']['result']['user']['userName'],
                 'hospital_id' => $output['response']['result']['user']['hospitalId'],
+                'domain' => $output['response']['result']['user']['domain'],
+                'user_phonenumber' => $output['response']['result']['user']['userPhoneNumber'],
+                'role' => $output['response']['result']['user']['role'],
                 'access_token' => $output['response']['result']['access_token'],
                 'logged_in' => TRUE
             );
@@ -64,6 +67,8 @@ class Auth extends MX_Controller
             ]);
         }
     }
+
+    
     public function sign_up()
     {
         $data = array(

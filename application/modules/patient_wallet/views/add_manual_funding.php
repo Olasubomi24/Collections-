@@ -1,60 +1,62 @@
 <section class="content">
     <div class="container">
         <h2>Add Wallet Funding</h2>
-        <p><a href="<?php echo base_url('wallet_funding/index'); ?>">Wallet Fundings</a></p>
-        
-        <?php echo form_open('wallet_funding/add_wallet_funding', ['id' => 'walletFundingForm']); ?>
-        
+        <p><a href="<?= base_url('patient_wallet/index'); ?>">Wallet Fundings</a></p>
+
+        <?= form_open('patient_wallet/add_manual_funding', ['id' => 'walletFundingForm']); ?>
         <div class="row clearfix">
             <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" name="hospitalId" class="form-control" placeholder="Hospital ID" required>
-                </div>
+                <input type="text" name="hospitalId" class="form-control" placeholder="Hospital ID"
+                    value="<?= $_SESSION['hospital_id'] ?? ''; ?>" required readonly>
             </div>
+
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="eWalletAccount" class="form-control" placeholder="E-Wallet Account" required>
+                    <select name="eWalletAccount" class="form-control" required>
+                        <option value="">Select E-Wallet Account</option>
+                        <?php if (!empty($ewallets) && is_array($ewallets)): ?>
+                        <?php foreach ($ewallets as $wallet): ?>
+                        <option value="<?= htmlspecialchars($wallet['eWalletAccount'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <?= htmlspecialchars($wallet['patientFirstName'] . " " . $wallet['patientLastName'], ENT_QUOTES, 'UTF-8'); ?>
+                        </option>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                        <option value="">No e-wallets available</option>
+                        <?php endif; ?>
+                    </select>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" name="patientPhoneNumber" class="form-control" placeholder="Patient Phone Number" required>
-                </div>
-            </div>
+
+
+
             <div class="col-md-4">
                 <div class="form-group">
                     <input type="number" step="0.01" name="amount" class="form-control" placeholder="Amount" required>
                 </div>
             </div>
-            <div class="col-md-4">
+
+            <div class="col-md-12">
                 <div class="form-group">
-                    <input type="text" name="fundingBank" class="form-control" placeholder="Funding Bank" required>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" name="sourceCode" class="form-control" placeholder="Source Code" required>
+                    <input type="text" name="description" class="form-control" placeholder="Funding Description"
+                        required>
                 </div>
             </div>
         </div>
+
         <div class="row clearfix">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" name="sessionId" class="form-control" placeholder="Session ID" value="<?= uniqid() . rand(1000, 9999); ?>" readonly>
-                </div>
-            </div>
             <div class="col-md-4">
                 <button type="submit" class="btn btn-success mt-2">Add Wallet Funding</button>
             </div>
         </div>
-        
-        <?php echo form_close(); ?>
+
+        <?= form_close(); ?>
     </div>
 </section>
 
-<!-- Include jQuery -->
+<!-- Include jQuery and SweetAlert -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
 $(document).ready(function() {
     $('#walletFundingForm').submit(function(event) {
@@ -64,7 +66,7 @@ $(document).ready(function() {
         console.log("Serialized Form Data:", formData); // ✅ Debugging
 
         $.ajax({
-            url: "<?= base_url('patient_wallet/add_refund'); ?>",
+            url: "<?= base_url('patient_wallet/add_manual_funding'); ?>",
             type: "POST",
             data: formData,
             dataType: "json",
@@ -75,7 +77,7 @@ $(document).ready(function() {
                 if (response && response.status === 'success') {
                     Swal.fire({
                         title: "Success!",
-                        text: response.message || "Refund processed successfully.",
+                        text: response.message || "Wallet funded successfully.",
                         icon: "success"
                     }).then(() => {
                         window.location.href = "<?= base_url('patient_wallet/index'); ?>";

@@ -7,7 +7,7 @@ class Collection extends MX_Controller
         parent::__construct();
         $this->load->module('template');
         $this->load->module('utility');
-
+        $this->load->helper('url');
         $this->load->module('agg');
     }
 
@@ -105,78 +105,132 @@ class Collection extends MX_Controller
 //     $this->template->general_template($data);
 // }
 
+
+
+
+
 // public function index()
 // {
-//     // Get startDate and endDate from the POST request (if submitted)
-//     $start_dt = $this->input->post('startDate');
-//     $end_dt = $this->input->post('endDate');
+//     if ($this->input->is_ajax_request()) {
+//         // Get input values
+//         $startDate = $this->input->post('startDate');
+//         $endDate = $this->input->post('endDate');
 
-//     // Convert the dates to YYYY-MM-DD format if provided
-//     $formattedStartDate = !empty($start_dt) ? (new DateTime($start_dt))->format('Y-m-d') : '';
-//     $formattedEndDate = !empty($end_dt) ? (new DateTime($end_dt))->format('Y-m-d') : '';
+//         // Initialize an empty array for dates
+//         $var = [];
 
-//     // Store the formatted dates in an array
-//     $dateRange = [
-//         'start_dt' => $formattedStartDate,
-//         'end_dt' => $formattedEndDate
-//     ];
+//         // Format dates if provided
+//         if (!empty($startDate)) {
+//             $var['startDate'] = (new DateTime($startDate))->format('Y/m/d');
+//         }
 
-//     // Fetch collections data with optional start_dt and end_dt
-//     $collectionsData = $this->utility->get_collection($dateRange);
+//         if (!empty($endDate)) {
+//             $var['endDate'] = (new DateTime($endDate))->format('Y/m/d');
+//         }
 
-//     // Ensure the result contains data
-//     $network_result = isset($collectionsData['result']['data']) && is_array($collectionsData['result']['data'])
-//         ? $collectionsData['result']['data']
-//         : [];
+//         // Validate form inputs (allow one of them to be empty)
+//         $this->form_validation->set_rules('startDate', 'Start Date', 'callback_valid_date_format');
+//         $this->form_validation->set_rules('endDate', 'End Date', 'callback_valid_date_format');
 
-//     // Prepare data for the view
+//         // Fetch data from API based on input
+//         $collectionsData = $this->utility->get_collection($var);
+//         $network_result = $collectionsData['result']['data'] ;
+
+//         // Return success response
+//         $response = [
+//             'status' => 'success',
+//             'message' => 'Data fetched successfully.',
+//             'data' => $network_result
+//         ];
+
+//         // Send JSON response
+//         $this->output->set_content_type('application/json')->set_output(json_encode($response));
+//         return;
+//     }
+
+//     // If no AJAX request, fetch all data without filters first
+//     $collectionsData = $this->utility->get_collection([]);
+//     $network_result = $collectionsData['result']['data'] ;
+
 //     $data = [
 //         'title' => 'Dashboard',
 //         'content_view' => 'collection/table',
 //         'network_result' => $network_result,
-//         'start_dt' => $start_dt, // Pass the raw start date to the view
-//         'end_dt' => $end_dt     // Pass the raw end date to the view
+//         'start_dt' => $this->input->post('startDate') ?? '',
+//         'end_dt' => $this->input->post('endDate') ?? ''
 //     ];
 
-//     // Load the general template and pass in the data
 //     $this->template->general_template($data);
 // }
 
 public function index()
 {
-    // Initialize variables for start and end date
-    $startDate = $this->input->post('startDate');
-    $endDate = $this->input->post('endDate');
+    if ($this->input->is_ajax_request()) {
+        // Get input values
+        $startDate = trim($this->input->post('startDate'));
+        $endDate = trim($this->input->post('endDate'));
 
-    // Convert dates to YYYY-MM-DD or use default if empty
-    $formattedStartDate = !empty($startDate) ? (new DateTime($startDate))->format('Y-m-d') : null;
-    $formattedEndDate = !empty($endDate) ? (new DateTime($endDate))->format('Y-m-d') : null;
+        log_message('debug', "Received AJAX Request: Start Date = {$startDate}, End Date = {$endDate}");
 
-    // Prepare the date range array
-    $dateRange = [];
-    if ($formattedStartDate) {
-        $dateRange['start_dt'] = $formattedStartDate;
+        // Initialize filter array
+        $var = [];
+
+        // Validate and format dates if provided
+        if (!empty($startDate) && strtotime($startDate)) {
+            $var['startDate'] = date('Y/m/d', strtotime($startDate));
+        }
+
+        if (!empty($endDate) && strtotime($endDate)) {
+            $var['endDate'] = date('Y/m/d', strtotime($endDate));
+        }
+
+        log_message('debug', 'Formatted Filters: ' . json_encode($var));
+
+        // Fetch filtered data from API
+        $collectionsData = $this->utility->get_collection($var);
+        log_message('debug', 'API Response: ' . json_encode($collectionsData));
+
+        // Check if API response contains valid data
+        $network_result = $collectionsData['result']['data'] ?? [];
+
+        $response = [
+            'status'  => !empty($network_result) ? 'success' : 'error',
+            'message' => !empty($network_result) ? 'Data fetched successfully.' : 'No data found for the selected filters.',
+            'data'    => $network_result
+        ];
+
+        // Send JSON response
+        return $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($response));
     }
-    if ($formattedEndDate) {
-        $dateRange['end_dt'] = $formattedEndDate;
-    }
 
-    // Fetch the collections data
-    $collectionsData = $this->utility->get_collection($dateRange);
+    // If no AJAX request, fetch all data without filters
+    $collectionsData = $this->utility->get_collection([]);
     $network_result = $collectionsData['result']['data'] ?? [];
 
-    // Pass the variables to the view
     $data = [
-        'title' => 'Dashboard',
-        'content_view' => 'collection/table',
+        'title'          => 'Dashboard',
+        'content_view'   => 'collection/table',
         'network_result' => $network_result,
-        'start_dt' => $startDate,  // Pass the original start date for the form
-        'end_dt' => $endDate       // Pass the original end date for the form
+        'start_dt'       => $this->input->post('startDate') ?? '',
+        'end_dt'         => $this->input->post('endDate') ?? ''
     ];
 
-    // Load the template
+    // Load the view template
     $this->template->general_template($data);
 }
+
+
+
+
+
+
+/**
+ * Custom date validation function (YYYY-MM-DD format)
+ */
+
+
 
 
 

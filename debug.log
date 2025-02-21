@@ -1,0 +1,19 @@
+Array
+(
+    [status] => success
+    [statusCode] => 201
+    [message] => Refund processed successfully
+    [result] => Array
+        (
+            [transactionId] => 00e40303-f92a-48b4-ab04-e8fed92973dc
+            [eWalletAccount] => 081423456875
+            [amount] => 10
+            [balanceBefore] => 2070
+            [balanceAfter] => 2060
+            [transactionType] => REFUND
+            [status] => COMPLETED
+            [referenceId] => RF-0795eb20-967d-4490-a921-bc34adad1347
+            [transactionDate] => 2025-02-21T16:50:31.142Z
+        )
+
+)

@@ -23,7 +23,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <h2><a href="<?php echo base_url('hospital/adds_hospital'); ?>"><strong>Add hospital</strong></a>
+                            <h2><a href="<?php echo base_url('hospital/adds_hospital'); ?>"><strong>Add
+                                        hospital</strong></a>
                             </h2>
                             <ul class="header-dropdown">
                                 <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle"
@@ -35,9 +36,9 @@
                                         <li><a href="javascript:void(0);">Something else</a></li>
                                     </ul> -->
                                 </li>
-                                <li class="remove">
+                                <!-- <li class="remove">
                                     <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                         <div class="body">
@@ -83,10 +84,11 @@
                                             <td><?= htmlspecialchars($hospital['referenceId']); ?></td>
                                             <td><?= htmlspecialchars($hospital['transactionDate']); ?></td>
                                             <td>
-                                            <a href="<?php echo base_url('hospital/edits_hospital/' . $hospital['id']); ?>" class="btn btn-warning btn-sm">Edit</a>
-    <!-- <button class="btn btn-danger btn-sm delete-btn" 
+                                                <a href="<?php echo base_url('hospital/edits_hospital/' . $hospital['id']); ?>"
+                                                    class="btn btn-warning btn-sm">Edit</a>
+                                                <!-- <button class="btn btn-danger btn-sm delete-btn" 
             data-id="<?= $hospital['id']; ?>">Delete</button> -->
-</td>
+                                            </td>
                                         </tr>
                                         <?php endforeach; ?>
                                         <?php else: ?>

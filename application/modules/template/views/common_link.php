@@ -56,6 +56,9 @@ if (!isset($_SESSION['email'])) {
             <li class="active open"><a href="<?php echo base_url('user_profile/index'); ?>"><i class="zmdi zmdi-home"></i><span>User Profile</span></a></li>
             <li class="active open"><a href="<?php echo base_url('hospital/index'); ?>"><i class="zmdi zmdi-home"></i><span>Hospital</span></a></li>
             <li class="active open"><a href="<?php echo base_url('patient_wallet/index'); ?>"><i class="zmdi zmdi-home"></i><span>Patient</span></a></li>
+            <li class="active open"><a href="<?php echo base_url('patient_wallet/adds_manual_funding'); ?>"><i class="zmdi zmdi-home"></i><span>Patient Wallet Funding</span></a></li>
+            <li class="active open"><a href="<?php echo base_url('patient_wallet/adds_refund'); ?>"><i class="zmdi zmdi-home"></i><span>Patient Refund</span></a></li>
+            <li class="active open"><a href="<?php echo base_url('patient_wallet/patient_wallet_index'); ?>"><i class="zmdi zmdi-home"></i><span>Patient Wallet Details</span></a></li>
             <li class="active open"><a href="<?php echo base_url('settlement/index'); ?>"><i class="zmdi zmdi-home"></i><span>Settlements</span></a></li>
             <li class="active open"><a href="<?php echo base_url('wallet_funding/index'); ?>"><i class="zmdi zmdi-home"></i><span>Wallet Funding</span></a></li>
             <li class="active open"><a href="<?php echo base_url('audit/index'); ?>"><i class="zmdi zmdi-home"></i><span>Audit</span></a></li>

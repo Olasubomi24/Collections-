@@ -25,6 +25,155 @@ class Patient_wallet extends MX_Controller
         $this->template->general_template($data);
     }
 
+
+    public function adds_manual_funding()
+    {
+        $data['title'] = 'Manual Funding';
+        $hospitalId = $_SESSION['hospital_id'] ?? '';
+    
+        // Fetch patient e-wallets from API
+        $response = $this->utility->get_patient_wallets($hospitalId);
+    
+        // Extract the items array
+        $data['ewallets'] = isset($response['result']['items']) ? $response['result']['items'] : [];
+    
+       // print_r($data['ewallets']); die(); // Debugging: Check extracted items
+    
+        $data['content_view'] = 'patient_wallet/add_manual_funding';
+        $this->template->general_template($data);
+    }
+    
+    public function add_manual_funding()
+    {
+        if ($this->input->post()) {
+            $hospitalId = $this->input->post('hospitalId');
+            $eWalletAccount = $this->input->post('eWalletAccount');
+            $amount = $this->input->post('amount');
+            $description = $this->input->post('description');
+    
+            // Validate input
+            if (empty($hospitalId) || empty($eWalletAccount) || empty($amount) || empty($description)) {
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'All fields are required.'
+                ]);
+                exit();
+            }
+    
+            $walletFundingData = [
+                "hospitalId" => $hospitalId,
+                "eWalletAccount" => $eWalletAccount,
+                "amount" => $amount,
+                "description" => $description
+            ];
+    
+            // Call API and handle response
+            $apiResponse = $this->utility->create_manual_funding($walletFundingData);
+    
+            // Debugging: Log API response
+            file_put_contents('debug.log', print_r($apiResponse, true));
+    
+            // Ensure the response is an array
+            $responseData = is_array($apiResponse) ? $apiResponse : json_decode($apiResponse, true);
+    
+            // Ensure JSON response format
+            header('Content-Type: application/json');
+    
+            if ($responseData && isset($responseData['status']) && $responseData['status'] == 'success') {
+                echo json_encode([
+                    'status' => 'success',
+                    'message' => 'Wallet funding initiated successfully.',
+                    'result' => $responseData['result'] ?? []
+                ]);
+            } else {
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => $responseData['message'] ?? 'An error occurred while initiating wallet funding.'
+                ]);
+            }
+            exit();
+        } else {
+            $data['title'] = 'Add Wallet Funding';
+            $data['content_view'] = 'patient_wallet/add_manual_funding';
+            $this->template->general_template($data);
+        }
+    }
+    
+
+    public function adds_refund()
+    {
+        $data['title'] = 'Refund';
+        $hospitalId = $_SESSION['hospital_id'] ?? '';
+    
+        // Fetch patient e-wallets from API
+        $response = $this->utility->get_patient_wallets($hospitalId);
+    
+        // Extract the items array
+        $data['ewallets'] = isset($response['result']['items']) ? $response['result']['items'] : [];
+    
+       // print_r($data['ewallets']); die(); // Debugging: Check extracted items
+    
+        $data['content_view'] = 'patient_wallet/refund';
+        $this->template->general_template($data);
+    }
+
+public function add_refund()
+{
+    if ($this->input->post()) {
+        $hospitalId = $this->input->post('hospitalId');
+        $eWalletAccount = $this->input->post('eWalletAccount');
+        $amount = $this->input->post('amount');
+        $reason = $this->input->post('reason');
+
+        // Validate input
+        if (empty($hospitalId) || empty($eWalletAccount) || empty($amount) || empty($reason)) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'All fields are required.'
+            ]);
+            exit();
+        }
+
+        $refundData = [
+            "hospitalId" => $hospitalId,
+            "eWalletAccount" => $eWalletAccount,
+            "amount" => $amount,
+            "reason" => $reason
+        ];
+
+        // Call API and handle response
+        $apiResponse = $this->utility->create_refunding($refundData);
+
+        // Debugging: Log API response
+        file_put_contents('debug.log', print_r($apiResponse, true));
+
+        // Ensure the response is an array
+        $responseData = is_array($apiResponse) ? $apiResponse : json_decode($apiResponse, true);
+
+        // Ensure JSON response format
+        header('Content-Type: application/json');
+
+        if ($responseData && isset($responseData['status']) && $responseData['status'] == 'success') {
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Refund initiated successfully.',
+                'result' => $responseData['result'] ?? []
+            ]);
+        } else {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $responseData['message'] ?? 'An error occurred while initiating the refund.'
+            ]);
+        }
+        exit();
+    } else {
+        $data['title'] = 'Request Refund';
+        $data['content_view'] = 'patient_wallet/refund';
+        $this->template->general_template($data);
+    }
+}
+
+   
     public function adds_patient_wallet()
     {
         $data['title'] = 'Dashboard';
@@ -172,6 +321,62 @@ public function edit_patient_wallet() {
         show_404(); // Handle non-AJAX requests
     }
 }
+
+public function patient_wallet_index()
+{
+    if ($this->input->is_ajax_request()) {
+        $hospitalId = $_SESSION['hospital_id'] ?? '';
+        $email = trim($this->input->post('email'));
+        $eWalletAccount = trim($this->input->post('eWalletAccount'));
+
+        log_message('debug', "Received AJAX Request: Hospital ID = {$hospitalId}, Email = {$email}, eWalletAccount = {$eWalletAccount}");
+
+        if (empty($hospitalId)) {
+            $response = [
+                'status'  => 'error',
+                'message' => 'Hospital ID is required.',
+                'data'    => []
+            ];
+            return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode($response));
+        }
+
+        $var = ['hospitalId' => $hospitalId];
+        if (!empty($email)) {
+            $var['email'] = $email;
+        }
+        if (!empty($eWalletAccount)) {
+            $var['eWalletAccount'] = $eWalletAccount;
+        }
+
+        log_message('debug', 'Formatted Filters: ' . json_encode($var));
+
+        $collectionsData = $this->utility->get_patient_wallet_txn($var);
+        log_message('debug', 'API Response: ' . json_encode($collectionsData));
+
+        $network_result = $collectionsData['result']['data'] ?? [];
+
+        $response = [
+            'status'  => !empty($network_result) ? 'success' : 'error',
+            'message' => !empty($network_result) ? 'Data fetched successfully.' : 'No data found.',
+            'data'    => $network_result
+        ];
+
+        return $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($response));
+    }
+        // Load the default view if not an AJAX request
+        $data = [
+            'title'        => 'Patient Wallet Transactions',
+            'content_view' => 'patient_wallet/wallet_table',
+        ];
+    
+        $this->template->general_template($data);
+}
+
+
 
 
 }
