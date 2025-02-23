@@ -128,6 +128,76 @@ private function call_apis($method, $url, $data = null)
     return json_decode($response, true);
 }
 
+// public function callapis($method, $url, $data = [], $isMultipart = false)
+// {
+    
+//     $token = $_SESSION['access_token'];
+//     $headers = [
+//         "Authorization: Bearer $token",
+//         "Accept: application/json",
+//         "Accept: */*",
+//         "Content-Type: multipart/form-data"
+//     ];
+
+//     $curl = curl_init();
+
+//     curl_setopt_array($curl, [
+//         CURLOPT_URL => $url,
+//         CURLOPT_RETURNTRANSFER => true,
+//         CURLOPT_CUSTOMREQUEST => $method,
+//         CURLOPT_HTTPHEADER => $headers
+//     ]);
+
+//     if ($data) {
+//         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+//     }
+
+//     $response = curl_exec($curl);
+//    //echo $response; die;
+//     curl_close($curl);
+
+//     return json_decode($response, true);
+// }
+
+public function callapis($method, $url, $data = [], $isMultipart = false)
+{
+    $token = $_SESSION['access_token'];
+    
+    // Default headers (do NOT set Content-Type manually for multipart)
+    $headers = [
+        "Authorization: Bearer $token",
+        "Accept: application/json",
+        "Accept: */*"
+    ];
+
+    $curl = curl_init();
+    
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => $method,
+        CURLOPT_HTTPHEADER => $headers
+    ]);
+
+    if (!empty($data)) {
+        if ($isMultipart) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // No json_encode()
+        } else {
+            $headers[] = "Content-Type: application/json";
+            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+        }
+    }
+
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers); // Update headers
+
+    $response = curl_exec($curl);
+    curl_close($curl);
+
+    return json_decode($response, true);
+}
+
+
+
 public function get_hospitals()
 {
     $url = "https://api.macrotech.com.ng/api/v1/hospitals";
@@ -143,12 +213,12 @@ public function get_hospital_by_id($id)
 
 public function create_hospital($data)
 {
-    return $this->call_apis('POST', "https://api.macrotech.com.ng/api/v1/hospitals", $data);
+    return $this->callapis('POST', "https://api.macrotech.com.ng/api/v1/hospitals", $data, true); // Set $isMultipart to true
 }
 
 public function update_hospital($id, $data)
 {
-    return $this->call_apis('PUT', "https://api.macrotech.com.ng/api/v1/hospitals/$id", $data);
+    return $this->callapis('PUT', "https://api.macrotech.com.ng/api/v1/hospitals/$id", $data);
 }
 
 public function get_patient_wallet_txn($var = [])
@@ -444,6 +514,12 @@ public function update_collection($id, $data)
     return  $response;
 }
 
+public function get_role()
+    {
+      
+        return $this->call_apis('GET', "https://api.macrotech.com.ng/api/v1/roles/get-all-roles");
+    }
+
 public function get_user_by_id($id)
 {
     return $this->call_apis('GET', "https://api.macrotech.com.ng/api/v1/users/$id");
@@ -456,7 +532,8 @@ public function create_user($data)
 
 public function update_user($id, $data)
 {
-    return $this->call_apis('PUT', "https://api.macrotech.com.ng/api/v1/users/$id", $data);
+   // print_r($data); die;
+    return $this->call_apis('PATCH', "https://api.macrotech.com.ng/api/v1/users/$id", $data);
 }
    
     
@@ -486,7 +563,7 @@ public function update_user($id, $data)
         return $this->call_apis('PATCH', "https://api.macrotech.com.ng/api/v1/users/profile", $data);
     }
 
-    public function change_user_profile($data)
+    public function change_user_password($data)
     {
         return $this->call_apis('PATCH', "https://api.macrotech.com.ng/api/v1/users/change-password", $data);
     }

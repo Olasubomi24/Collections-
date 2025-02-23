@@ -1,9 +1,9 @@
 <section class="content">
     <div class="container">
         <h2>Add Hospital</h2>
-        <p ><a href="<?php echo base_url('hospital/index'); ?>">hospital</a>
-</p>
-        <?php echo form_open('hospital/add_hospital', ['id' => 'hosp']); ?>
+        <p><a href="<?php echo base_url('hospital/index'); ?>">Hospital</a></p>
+
+        <?php echo form_open_multipart('hospital/add_hospital', ['id' => 'hosp']); ?>
         <div class="row clearfix">
             <div class="col-md-4">
                 <div class="form-group">
@@ -36,6 +36,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row clearfix">
             <div class="col-md-4">
                 <div class="form-group">
@@ -53,12 +54,19 @@
                 </div>
             </div>
             <div class="col-md-4">
+                <div class="form-group">
+                    <label for="hospitalLogo">Hospital Logo</label>
+                    <input type="file" name="logo" class="form-control" accept="image/*" required>
+                </div>
+            </div>
+            <div class="col-md-4">
                 <button type="submit" class="btn btn-success mt-2">Add Hospital</button>
             </div>
         </div>
         <?php echo form_close(); ?>
     </div>
 </section>
+
 
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -67,13 +75,16 @@
 $(document).ready(function () {
     $('#hosp').submit(function (event) {
         event.preventDefault(); // Prevent default form submission
-        let formData = $(this).serialize(); // Serialize form data
+
+        let formData = new FormData(this); // Use FormData to handle file upload
 
         $.ajax({
             url: "<?php echo base_url('hospital/add_hospital'); ?>",
             type: "POST",
             data: formData,
             dataType: "json",
+            processData: false, // Important: Prevent jQuery from processing the data
+            contentType: false, // Important: Prevent jQuery from setting content type
             success: function(response) {
                 console.log("Response received:", response); // Debugging
                 if (response.status === 'success') {
@@ -92,3 +103,5 @@ $(document).ready(function () {
 });
 
 </script>
+
+

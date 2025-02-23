@@ -9,36 +9,61 @@
         <input type="hidden" name="id" value="<?= isset($user['id']) ? $user['id'] : ''; ?>">
 
         <div class="row clearfix">
+
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="userName" class="form-control" placeholder="User Name" value="<?= isset($user['userName']) ? set_value('userName', $user['userName']) : ''; ?>" required>
+                    <input type="email" name="email" class="form-control" placeholder="Email"
+                        value="<?= isset($user['email']) ? set_value('email', $user['email']) : ''; ?>" required>
                 </div>
             </div>
+
+            <!-- Role Dropdown -->
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email" value="<?= isset($user['email']) ? set_value('email', $user['email']) : ''; ?>" required>
+                    <select name="roleId" class="form-control" required>
+                        <option value="">Select Role</option>
+                        <?php foreach ($role as $r): ?>
+                        <option value="<?php echo $r['id']; ?>"
+                            <?= isset($user['roleId']) && $user['roleId'] == $r['id'] ? 'selected' : ''; ?>>
+                            <?php echo $r['name']; ?>
+                            <!-- Ensure API returns 'role_name' -->
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
+                <small>Current: <?= isset($user['roleId']) ? $user['roleId'] : 'Not Set'; ?></small>
             </div>
+
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Password" value="" required>
+                    <select name="isActive" class="form-control" required>
+                        <option value="1"
+                           >True
+                        </option>
+                        <option value="0"
+                           >False
+                        </option>
+                    </select>
                 </div>
             </div>
-            <div class="col-md-4">
+
+
+
+            <!-- <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="userPhoneNumber" class="form-control" placeholder="Phone Number" value="<?= isset($user['userPhoneNumber']) ? set_value('userPhoneNumber', $user['userPhoneNumber']) : ''; ?>" required>
+                    <select name="isActive" class="form-control" required>
+                        <option value="1"
+                            <?//= //isset($user['isActive']) && $user['isActive'] == true ? 'selected' : ''; ?>>True
+                        </option>
+                        <option value="0"
+                            <?//= //isset($user['isActive']) && $user['isActive'] == false ? 'selected' : ''; ?>>False
+                        </option>
+                    </select>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" name="hospitalId" class="form-control" placeholder="Hospital ID"  value="<?= empty($_SESSION['hospital_id']) ? '' : $_SESSION['hospital_id']; ?>" required>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" name="roleId" class="form-control" placeholder="Role ID" value="<?= isset($user['roleId']) ? set_value('roleId', $user['roleId']) : ''; ?>" required>
-                </div>
-            </div>
+            </div> -->
+
+
+
             <div class="col-md-4">
                 <button type="submit" class="btn btn-success mt-2">Update User</button>
             </div>
@@ -48,12 +73,14 @@
     </div>
 </section>
 
+
+
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert -->
 <script>
-$(document).ready(function () {
-    $('#userForm').submit(function (event) {
+$(document).ready(function() {
+    $('#userForm').submit(function(event) {
         event.preventDefault(); // Prevent default form submission
         let formData = $(this).serialize(); // Serialize form data
         let csrfTokenName = '<?php echo $this->security->get_csrf_token_name(); ?>';
@@ -67,7 +94,8 @@ $(document).ready(function () {
                 console.log("Response received:", response); // Debugging
                 if (response.status === 'success') {
                     Swal.fire("Success!", response.message, "success")
-                        .then(() => window.location.href = "<?php echo base_url('user/index'); ?>");
+                        .then(() => window.location.href =
+                            "<?php echo base_url('user/index'); ?>");
                 } else {
                     Swal.fire("Error!", response.message, "error");
                 }

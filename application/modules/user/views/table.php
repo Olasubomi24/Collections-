@@ -66,6 +66,8 @@
                                             <td><?= htmlspecialchars($user['userPhoneNumber']); ?></td>
                                             <td><?= htmlspecialchars($user['hospitalId']); ?></td>
                                             <td><?= htmlspecialchars($user['roleId']); ?></td>
+                                            <td><?= htmlspecialchars($user['isActive']); ?></td>
+                                            <td>
                                             <td>
                                                 <a href="<?php echo base_url('user/edits_user/' . $user['id']); ?>"
                                                     class="btn btn-warning btn-sm">Edit</a>

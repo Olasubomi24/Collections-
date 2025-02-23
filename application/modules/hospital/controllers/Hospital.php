@@ -31,57 +31,115 @@ class Hospital extends MX_Controller
         $data['content_view'] = 'hospital/add_hospital';
         $this->template->general_template($data);
     }
+    // public function add_hospital()
+    // {
+    //     header('Content-Type: application/json'); // Ensure JSON response
+    
+    //     $this->load->library('form_validation');
+    //     $this->form_validation->set_rules('hospitalName', 'Hospital Name', 'required');
+    //     $this->form_validation->set_rules('hospitalAdminName', 'Admin Name', 'required');
+    
+    //     if ($this->form_validation->run() == FALSE) {
+    //         echo json_encode(['status' => 'error', 'message' => validation_errors()]);
+    //         return;
+    //     }
+    
+    //     // Get file name without uploading
+    //     $hospitalLogo = !empty($_FILES['hospitalLogo']['name']) ? $_FILES['hospitalLogo']['name'] : null;
+    
+    //     // Save hospital details
+    //     $data = [
+    //         'hospitalName' => $this->input->post('hospitalName'),
+    //         'hospitalAdminName' => $this->input->post('hospitalAdminName'),
+    //         'hospitalPhoneNumber' => $this->input->post('hospitalPhoneNumber'),
+    //         'hospitalEmail' => $this->input->post('hospitalEmail'),
+    //         'hospitalAddress' => $this->input->post('hospitalAddress'),
+    //         'hospitalCardInsuranceCommission' => $this->input->post('hospitalCardInsuranceCommission'),
+    //         'hospitalEWalletFundingCommission' => $this->input->post('hospitalEWalletFundingCommission'),
+    //         'hospitalCollectionCommission' => $this->input->post('hospitalCollectionCommission'),
+    //         'domain' => $this->input->post('domain'),
+    //         'logo' => $hospitalLogo, // Just store the file name, no upload
+    //         "settings" => [
+    //             "theme" => "light",
+    //             "language" => "en",
+    //             "timezone" => "UTC",
+    //             "notifications" => true
+    //         ]
+    //     ];
+    //   //  print_r($hospitalData); die();
+    //     // Call the API and capture the response
+    //     $apiResponse = $this->utility->create_hospital($data);
+
+    //     // Decode the JSON response if it's not already an array
+    //     $responseData = is_array($apiResponse) ? $apiResponse : json_decode($apiResponse, true);
+    
+    //     if ($responseData && isset($responseData['status']) && $responseData['status'] == 'success') {
+    //         echo json_encode([
+    //             'status' => 'success',
+    //             'message' => 'Hospital added successfully.'
+    //         ]);
+    //     } else {
+    //         $errorMessage = isset($responseData['message']) ? $responseData['message'] : 'An error occurred while adding the hospital.';
+    //         echo json_encode([
+    //             'status' => 'error',
+    //             'message' => $errorMessage
+    //         ]);
+    //     }
+    // }
+    
+    
     public function add_hospital()
-    {
-        if ($this->input->post()) {
-            $hospitalData = [
-                "hospitalName" => $this->input->post('hospitalName'),
-                "hospitalAdminName" => $this->input->post('hospitalAdminName'),
-                "hospitalPhoneNumber" => $this->input->post('hospitalPhoneNumber'),
-                "hospitalEmail" => $this->input->post('hospitalEmail'),
-                "hospitalAddress" => $this->input->post('hospitalAddress'),
-                "hospitalCardInsuranceCommission" => $this->input->post('hospitalCardInsuranceCommission'),
-                "hospitalEWalletFundingCommission" => $this->input->post('hospitalEWalletFundingCommission'),
-                "hospitalCollectionCommission" => $this->input->post('hospitalCollectionCommission'),
-                "domain" => $this->input->post('domain'),
-                "settings" => [
-                    "theme" => "light",
-                    "language" => "en",
-                    "timezone" => "UTC",
-                    "notifications" => true
-                ]
-            ];
-    
-            // Call the API and capture the response
-            $apiResponse = $this->utility->create_hospital($hospitalData);
-    
-            // Check if the response is already an array
-            if (is_array($apiResponse)) {
-                $responseData = $apiResponse;
-            } else {
-                // Decode the JSON string if it's not already an array
-                $responseData = json_decode($apiResponse, true);
-            }
-    
-            if ($responseData && isset($responseData['status']) && $responseData['status'] == 'success') {
-                echo json_encode([
-                    'status' => 'success',
-                    'message' => 'Hospital added successfully.'
-                ]);
-            } else {
-                $errorMessage = isset($responseData['message']) ? $responseData['message'] : 'An error occurred while adding the hospital.';
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => $errorMessage
-                ]);
-            }
-            exit();
-        } else {
-            $data['title'] = 'Add Hospital';
-            $data['content_view'] = 'hospital/add_hospital';
-            $this->template->general_template($data);
-        }
+{
+    header('Content-Type: application/json');
+
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('hospitalName', 'Hospital Name', 'required');
+    $this->form_validation->set_rules('hospitalAdminName', 'Admin Name', 'required');
+
+    if ($this->form_validation->run() == FALSE) {
+        echo json_encode(['status' => 'error', 'message' => validation_errors()]);
+        return;
     }
+
+    // Prepare multipart data
+    $hospitalData = [
+        'hospitalName' => $this->input->post('hospitalName'),
+        'hospitalAdminName' => $this->input->post('hospitalAdminName'),
+        'hospitalPhoneNumber' => $this->input->post('hospitalPhoneNumber'),
+        'hospitalEmail' => $this->input->post('hospitalEmail'),
+        'hospitalAddress' => $this->input->post('hospitalAddress'),
+        'hospitalCardInsuranceCommission' => $this->input->post('hospitalCardInsuranceCommission'),
+        'hospitalEWalletFundingCommission' => $this->input->post('hospitalEWalletFundingCommission'),
+        'hospitalCollectionCommission' => $this->input->post('hospitalCollectionCommission'),
+        'domain' => $this->input->post('domain'),
+        'settings' => json_encode([
+            "theme" => "light",
+            "language" => "en",
+            "timezone" => "UTC",
+            "notifications" => true
+        ])
+    ];
+
+    // Handle file upload properly
+    if (!empty($_FILES['logo']['name'])) {
+        $hospitalData['logo'] = new CURLFile($_FILES['logo']['tmp_name'], $_FILES['logo']['type'], $_FILES['logo']['name']);
+    }
+
+    // Call API
+    $apiResponse = $this->utility->create_hospital($hospitalData);
+
+    if ($apiResponse && isset($apiResponse['status']) && $apiResponse['status'] === 'success') {
+        echo json_encode(['status' => 'success', 'message' => 'Hospital added successfully.']);
+    } else {
+        $errorMessage = isset($apiResponse['message']) ? $apiResponse['message'] : 'An error occurred while adding the hospital.';
+        echo json_encode(['status' => 'error', 'message' => $errorMessage]);
+    }
+}
+
+    
+    
+    
+
     // public function index()
     // {
     //     $data['title'] = 'Hospitals List';
@@ -159,95 +217,133 @@ class Hospital extends MX_Controller
 
 
 
-// public function edit_hospital()
-// {
-//     if ($this->input->post()) {
-//         // Collect form data
-//         $hospitalData = [
-//             "hospitalName" => $this->input->post('hospitalName'),
-//             "hospitalAdminName" => $this->input->post('hospitalAdminName'),
-//             "hospitalPhoneNumber" => $this->input->post('hospitalPhoneNumber'),
-//             "hospitalEmail" => $this->input->post('hospitalEmail'),
-//             "hospitalAddress" => $this->input->post('hospitalAddress'),
-//             "hospitalCardInsuranceCommission" => $this->input->post('hospitalCardInsuranceCommission'),
-//             "hospitalEWalletFundingCommission" => $this->input->post('hospitalEWalletFundingCommission'),
-//             "hospitalCollectionCommission" => $this->input->post('hospitalCollectionCommission'),
-//             "domain" => $this->input->post('domain'),
-//             "settings" => [
-//                 "theme" => "light",
-//                 "language" => "en",
-//                 "timezone" => "UTC",
-//                 "notifications" => true
-//             ]
-//         ];
-
-//         // Get the hospital ID from the hidden input field
-//         $id = $this->input->post('id');
-
-//         // Update the hospital via the utility class (API call)
-//         $updateResult = $this->utility->update_hospital($id, $hospitalData);
-
-//         if ($updateResult) {
-//             $this->session->set_flashdata('success', 'Hospital updated successfully.');
-//             redirect('hospital/index');
-//         } else {
-//             $this->session->set_flashdata('error', 'Failed to update hospital.');
-//             redirect('hospital/edits_hospital/' . $id); // Redirect back to edit page with error
-//         }
-//     } else {
-//         // If accessed directly without POST data, redirect to the correct edit page
-//         redirect('hospital/index');
-//     }
-// }
-
-public function edit_hospital() {
-    // Validate CSRF token (if CSRF protection is enabled)
-    if ($this->input->is_ajax_request()) {
-        $id = $this->input->post('id'); // Get the hospital ID from the form data
-
-        if (!$id) {
-            echo json_encode(['status' => 'error', 'message' => 'Invalid hospital ID']);
-            return;
-        }
-
-        // Fetch the existing hospital data
-        $existingHospital = $this->utility->get_hospital_by_id($id);
-       // print_r($existingHospital); die;
-        if (!$existingHospital || !isset($existingHospital['result'])) {
-            echo json_encode(['status' => 'error', 'message' => 'Hospital not found']);
-            return;
-        }
-
-        // Update the hospital data
-        $hospitalData = [
-            "hospitalName" => $this->input->post('hospitalName'),
-            "hospitalAdminName" => $this->input->post('hospitalAdminName'),
-            "hospitalPhoneNumber" => $this->input->post('hospitalPhoneNumber'),
-            "hospitalEmail" => $this->input->post('hospitalEmail'),
-            "hospitalAddress" => $this->input->post('hospitalAddress'),
-            "hospitalCardInsuranceCommission" => $this->input->post('hospitalCardInsuranceCommission'),
-            "hospitalEWalletFundingCommission" => $this->input->post('hospitalEWalletFundingCommission'),
-            "hospitalCollectionCommission" => $this->input->post('hospitalCollectionCommission'),
-            "domain" => $this->input->post('domain'),
-            "settings" => [
-                "theme" => "light",
-                "language" => "en",
-                "timezone" => "UTC",
-                "notifications" => true
-            ]
-        ];
-  // print_r($hospitalData); die;
-
-        // Call the utility method to update the hospital
-        $result = $this->utility->update_hospital($id, $hospitalData);
-
-        if ($result) {
-            echo json_encode(['status' => 'success', 'message' => 'Hospital updated successfully']);
+    // public function edit_hospital()
+    // {
+    //     if ($this->input->post()) {
+    //         // Retrieve the existing logo URL (if any)
+    //         $existingLogo = isset($existingHospital['result']['hospitalLogoURL']) ? $existingHospital['result']['hospitalLogoURL'] : null;
+    
+    //         // Check if an image file is uploaded
+    //         if (empty($_FILES['logo']['name']) && !$existingLogo) {
+    //             echo json_encode(['status' => 'error', 'message' => 'Hospital logo is required.']);
+    //             return;
+    //         }
+    
+    //         // Prepare data for update
+    //         $hospitalData = [
+    //             'hospitalName' => $this->input->post('hospitalName'),
+    //             'hospitalAdminName' => $this->input->post('hospitalAdminName'),
+    //             'hospitalPhoneNumber' => $this->input->post('hospitalPhoneNumber'),
+    //             'hospitalEmail' => $this->input->post('hospitalEmail'),
+    //             'hospitalAddress' => $this->input->post('hospitalAddress'),
+    //             'hospitalCardInsuranceCommission' => $this->input->post('hospitalCardInsuranceCommission'),
+    //             'hospitalEWalletFundingCommission' => $this->input->post('hospitalEWalletFundingCommission'),
+    //             'hospitalCollectionCommission' => $this->input->post('hospitalCollectionCommission'),
+    //             'domain' => $this->input->post('domain'),
+    //             'settings' => json_encode([
+    //                 "theme" => "light",
+    //                 "language" => "en",
+    //                 "timezone" => "UTC",
+    //                 "notifications" => true
+    //             ])
+    //         ];
+    
+    //         // Handle logo update
+    //         if (!empty($_FILES['logo']['name'])) {
+    //             $hospitalData['logo'] = new CURLFile( $_FILES['logo']['name']);
+    //         } else {
+    //             // Retain the existing logo if no new logo is uploaded
+    //             if ($existingLogo) {
+    //                 $hospitalData['logo'] = $existingLogo;
+    //             }
+    //         }
+    
+    //         // Get the hospital ID from the hidden input field
+    //         $id = $this->input->post('id');
+    
+    //         // Debug: Print data being sent to the API
+    //         error_log(print_r($hospitalData, true));
+    
+    //         // Update the hospital via the utility class (API call)
+    //         $result = $this->utility->update_hospital($id, $hospitalData);
+    
+    //         if ($result) {
+    //             echo json_encode(['status' => 'success', 'message' => 'Hospital updated successfully']);
+    //         } else {
+    //             echo json_encode(['status' => 'error', 'message' => 'Failed to update hospital']);
+    //         }
+    //     } else {
+    //         show_404(); // Handle non-AJAX requests
+    //     }
+    // }
+    
+    public function edit_hospital()
+    {
+        if ($this->input->post()) {
+            $id = $this->input->post('id'); // Get hospital ID
+    
+            // Fetch existing hospital data (Ensure `$existingHospital` is defined)
+            $existingHospital = $this->utility->get_hospital_by_id($id); // Fetch hospital details
+            $existingLogo = isset($existingHospital['result']['hospitalLogoURL']) ? basename($existingHospital['result']['hospitalLogoURL']) : null;
+    
+            // Get the new logo filename from the request
+            $uploadedLogo = $this->input->post('logo'); // ✅ Should be just the filename
+    
+            // Validate logo (Required if no existing logo)
+            if (empty($uploadedLogo) && empty($existingLogo)) {
+                echo json_encode(['status' => 'error', 'message' => 'Hospital logo is required.']);
+                return;
+            }
+    
+            // Prepare hospital data
+            $hospitalData = [
+                'hospitalName' => $this->input->post('hospitalName'),
+                'hospitalAdminName' => $this->input->post('hospitalAdminName'),
+                'hospitalPhoneNumber' => $this->input->post('hospitalPhoneNumber'),
+                'hospitalEmail' => $this->input->post('hospitalEmail'),
+                'hospitalAddress' => $this->input->post('hospitalAddress'),
+                'hospitalCardInsuranceCommission' => $this->input->post('hospitalCardInsuranceCommission'),
+                'hospitalEWalletFundingCommission' => $this->input->post('hospitalEWalletFundingCommission'),
+                'hospitalCollectionCommission' => $this->input->post('hospitalCollectionCommission'),
+                'domain' => $this->input->post('domain'),
+                'settings' => json_encode([
+                    "theme" => "light",
+                    "language" => "en",
+                    "timezone" => "UTC",
+                    "notifications" => true
+                ])
+            ];
+    
+            // ✅ Set the correct logo filename
+            if (!empty($uploadedLogo)) {
+                $hospitalData['logo'] = $uploadedLogo; // ✅ Use the new filename
+            } else if (!empty($existingLogo)) {
+                $hospitalData['logo'] = $existingLogo; // ✅ Keep the existing filename
+            }
+    
+            // Send data to update API
+            $result = $this->utility->update_hospital($id, $hospitalData);
+    
+            // ✅ Validate and return response
+            if ($result && isset($result['status']) && $result['status'] === 'success') {
+                echo json_encode([
+                    'status' => 'success',
+                    'message' => 'Hospital updated successfully',
+                    'data' => $result['result'] ?? null
+                ]);
+            } else {
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => $result['message'] ?? 'Failed to update hospital',
+                    'errorCode' => $result['errorCode'] ?? null
+                ]);
+            }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Failed to update hospital']);
+            show_404();
         }
-    } else {
-        show_404(); // Handle non-AJAX requests
     }
-}
+    
+    
+    
+
 }

@@ -49,7 +49,9 @@ class Auth extends MX_Controller
                 'hospital_id' => $output['response']['result']['user']['hospitalId'],
                 'domain' => $output['response']['result']['user']['domain'],
                 'user_phonenumber' => $output['response']['result']['user']['userPhoneNumber'],
-                'role' => $output['response']['result']['user']['role'],
+                'role' => $output['response']['result']['user']['role']['name'],
+                'hospital_name' => $output['response']['result']['user']['hospital']['hospitalName'],
+                'hospital_url' => $output['response']['result']['user']['hospital']['hospitalLogoURL'],
                 'access_token' => $output['response']['result']['access_token'],
                 'logged_in' => TRUE
             );

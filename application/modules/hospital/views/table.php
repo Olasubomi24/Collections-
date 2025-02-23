@@ -58,12 +58,13 @@
                                             <th>Domain</th>
                                             <th>Reference ID</th>
                                             <th>Transaction Date</th>
+                                            <th>Logo</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <pre><?php //print_r($hospitals); ?></pre> <!-- Debugging Output -->
+                                        <pre><?php //print_r($hospitals); die; ?></pre> <!-- Debugging Output -->
 
                                         <?php if (!empty($hospitals)): ?>
                                         <?php $sn = 1; foreach ($hospitals as $hospital): ?>
@@ -83,6 +84,7 @@
                                             <td><?= htmlspecialchars($hospital['domain']); ?></td>
                                             <td><?= htmlspecialchars($hospital['referenceId']); ?></td>
                                             <td><?= htmlspecialchars($hospital['transactionDate']); ?></td>
+                                            <td><?= htmlspecialchars($hospital['hospitalLogoURL']); ?></td>
                                             <td>
                                                 <a href="<?php echo base_url('hospital/edits_hospital/' . $hospital['id']); ?>"
                                                     class="btn btn-warning btn-sm">Edit</a>
