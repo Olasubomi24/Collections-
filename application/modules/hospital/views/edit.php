@@ -84,54 +84,54 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert -->
 <script>
-$(document).ready(function () {
-    $('#hosp').submit(function (event) {
-        event.preventDefault(); // Prevent default form submission
+// $(document).ready(function () {
+//     $('#hosp').submit(function (event) {
+//         event.preventDefault(); // Prevent default form submission
 
-        let formData = new FormData(this); // Collect form data
-        let fileInput = $('input[name="logo"]')[0];
+//         let formData = new FormData(this); // Collect form data
+//         let fileInput = $('input[name="logo"]')[0];
 
-        // Remove any existing logo key to avoid duplicate entries
-        formData.delete('logo');
+//         // Remove any existing logo key to avoid duplicate entries
+//         formData.delete('logo');
 
-        // Check if a file is selected and extract only the filename
-        if (fileInput.files.length > 0) {
-            let fileName = fileInput.files[0].name; // Extract filename only (e.g., "icon.jpeg")
-            formData.append('logo', fileName); // ✅ Only send the filename, not the file object
-        } else {
-            formData.append('logo', ''); // Ensure logo key is sent even if no file is selected
-        }
+//         // Check if a file is selected and extract only the filename
+//         if (fileInput.files.length > 0) {
+//             let fileName = fileInput.files[0].name; // Extract filename only (e.g., "icon.jpeg")
+//             formData.append('logo', fileName); // ✅ Only send the filename, not the file object
+//         } else {
+//             formData.append('logo', ''); // Ensure logo key is sent even if no file is selected
+//         }
 
-        // ✅ Console log to verify the correct data is being sent
-        console.log("🚀 Data being sent to API:");
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
+//         // ✅ Console log to verify the correct data is being sent
+//         console.log("🚀 Data being sent to API:");
+//         for (let [key, value] of formData.entries()) {
+//             console.log(`${key}: ${value}`);
+//         }
 
-        $.ajax({
-            url: "<?php echo base_url('hospital/edit_hospital'); ?>",
-            type: "POST",
-            data: formData,
-            contentType: false, // Required for file upload
-            processData: false, // Prevent jQuery from processing the data
-            dataType: "json",
-            success: function(response) {
-                console.log("✅ API Response:", response); // ✅ Log full API response
-                console.log("📌 Result Data:", response.data); // ✅ Log `result["result"]`
+//         $.ajax({
+//             url: "<?php echo base_url('hospital/edit_hospital'); ?>",
+//             type: "POST",
+//             data: formData,
+//             contentType: false, // Required for file upload
+//             processData: false, // Prevent jQuery from processing the data
+//             dataType: "json",
+//             success: function(response) {
+//                 console.log("✅ API Response:", response); // ✅ Log full API response
+//                 console.log("📌 Result Data:", response.data); // ✅ Log `result["result"]`
 
-                if (response.status === 'success') {
-                    Swal.fire("Success!", response.message, "success")
-                        .then(() => window.location.href = "<?php echo base_url('hospital/index'); ?>");
-                } else {
-                    Swal.fire("Error!", response.message, "error");
-                }
-            },
-            error: function() {
-                Swal.fire("Error!", "An unexpected error occurred.", "error");
-            }
-        });
-    });
-});
+//                 if (response.status === 'success') {
+//                     Swal.fire("Success!", response.message, "success")
+//                         .then(() => window.location.href = "<?php echo base_url('hospital/index'); ?>");
+//                 } else {
+//                     Swal.fire("Error!", response.message, "error");
+//                 }
+//             },
+//             error: function() {
+//                 Swal.fire("Error!", "An unexpected error occurred.", "error");
+//             }
+//         });
+//     });
+// });
 $(document).ready(function () {
     $('#hosp').submit(function (event) {
         event.preventDefault(); // Prevent default form submission

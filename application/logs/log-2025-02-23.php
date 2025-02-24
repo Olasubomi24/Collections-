@@ -6822,3 +6822,849 @@ DEBUG - 2025-02-23 21:43:09 --> File loaded: C:\xampp\htdocs\collections\applica
 DEBUG - 2025-02-23 21:43:09 --> Template MX_Controller Initialized
 DEBUG - 2025-02-23 21:43:09 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
 DEBUG - 2025-02-23 21:43:09 --> Utility MX_Controller Initialized
+INFO - 2025-02-23 23:52:48 --> Config Class Initialized
+INFO - 2025-02-23 23:52:48 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:52:48 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:52:48 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:52:48 --> URI Class Initialized
+INFO - 2025-02-23 23:52:48 --> Router Class Initialized
+INFO - 2025-02-23 23:52:48 --> Output Class Initialized
+INFO - 2025-02-23 23:52:48 --> Security Class Initialized
+DEBUG - 2025-02-23 23:52:48 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:52:48 --> Input Class Initialized
+INFO - 2025-02-23 23:52:48 --> Language Class Initialized
+INFO - 2025-02-23 23:52:48 --> Language Class Initialized
+INFO - 2025-02-23 23:52:48 --> Config Class Initialized
+INFO - 2025-02-23 23:52:48 --> Loader Class Initialized
+INFO - 2025-02-23 23:52:48 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:52:48 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:52:48 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:52:49 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:52:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:52:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:52:49 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:52:49 --> User_profile MX_Controller Initialized
+DEBUG - 2025-02-23 23:52:49 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:52:49 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:52:49 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:52:49 --> Utility MX_Controller Initialized
+ERROR - 2025-02-23 23:52:49 --> Severity: Warning --> Undefined array key "access_token" C:\xampp\htdocs\collections\application\modules\utility\controllers\Utility.php 103
+INFO - 2025-02-23 23:52:56 --> Config Class Initialized
+INFO - 2025-02-23 23:52:56 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:52:56 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:52:56 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:52:56 --> URI Class Initialized
+INFO - 2025-02-23 23:52:56 --> Router Class Initialized
+INFO - 2025-02-23 23:52:56 --> Output Class Initialized
+INFO - 2025-02-23 23:52:56 --> Security Class Initialized
+DEBUG - 2025-02-23 23:52:56 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:52:56 --> Input Class Initialized
+INFO - 2025-02-23 23:52:56 --> Language Class Initialized
+INFO - 2025-02-23 23:52:56 --> Language Class Initialized
+INFO - 2025-02-23 23:52:56 --> Config Class Initialized
+INFO - 2025-02-23 23:52:56 --> Loader Class Initialized
+INFO - 2025-02-23 23:52:56 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:52:56 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:52:56 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:52:58 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:52:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:52:58 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:52:58 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:52:58 --> User_profile MX_Controller Initialized
+DEBUG - 2025-02-23 23:52:58 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:52:58 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:52:58 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:52:58 --> Utility MX_Controller Initialized
+DEBUG - 2025-02-23 23:52:58 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/header.php
+INFO - 2025-02-23 23:52:58 --> Config Class Initialized
+INFO - 2025-02-23 23:52:58 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:52:58 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:52:58 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:52:58 --> URI Class Initialized
+INFO - 2025-02-23 23:52:58 --> Router Class Initialized
+INFO - 2025-02-23 23:52:58 --> Output Class Initialized
+INFO - 2025-02-23 23:52:58 --> Security Class Initialized
+DEBUG - 2025-02-23 23:52:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:52:58 --> Input Class Initialized
+INFO - 2025-02-23 23:52:58 --> Language Class Initialized
+INFO - 2025-02-23 23:52:58 --> Language Class Initialized
+INFO - 2025-02-23 23:52:58 --> Config Class Initialized
+INFO - 2025-02-23 23:52:58 --> Loader Class Initialized
+INFO - 2025-02-23 23:52:58 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:52:58 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:52:58 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:01 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:01 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:01 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:01 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:53:01 --> Auth MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:01 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:53:01 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:01 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:53:01 --> Utility MX_Controller Initialized
+INFO - 2025-02-23 23:53:01 --> Config Class Initialized
+INFO - 2025-02-23 23:53:01 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:53:01 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:53:01 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:01 --> URI Class Initialized
+INFO - 2025-02-23 23:53:01 --> Router Class Initialized
+INFO - 2025-02-23 23:53:01 --> Output Class Initialized
+INFO - 2025-02-23 23:53:01 --> Security Class Initialized
+DEBUG - 2025-02-23 23:53:01 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:53:01 --> Input Class Initialized
+INFO - 2025-02-23 23:53:01 --> Language Class Initialized
+INFO - 2025-02-23 23:53:01 --> Language Class Initialized
+INFO - 2025-02-23 23:53:01 --> Config Class Initialized
+INFO - 2025-02-23 23:53:01 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:01 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:01 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:01 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:02 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:02 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:02 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:02 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:53:02 --> Auth MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:02 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:53:02 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:02 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:53:02 --> Utility MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:03 --> File loaded: C:\xampp\htdocs\collections\application\modules/auth/views/login.php
+DEBUG - 2025-02-23 23:53:03 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/auth_footer.php
+DEBUG - 2025-02-23 23:53:03 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/auth_template.php
+INFO - 2025-02-23 23:53:03 --> Final output sent to browser
+DEBUG - 2025-02-23 23:53:03 --> Total execution time: 1.9661
+INFO - 2025-02-23 23:53:03 --> Config Class Initialized
+INFO - 2025-02-23 23:53:03 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:53:03 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:53:03 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:03 --> URI Class Initialized
+INFO - 2025-02-23 23:53:03 --> Router Class Initialized
+INFO - 2025-02-23 23:53:03 --> Output Class Initialized
+INFO - 2025-02-23 23:53:03 --> Security Class Initialized
+DEBUG - 2025-02-23 23:53:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:53:03 --> Input Class Initialized
+INFO - 2025-02-23 23:53:03 --> Language Class Initialized
+INFO - 2025-02-23 23:53:03 --> Language Class Initialized
+INFO - 2025-02-23 23:53:03 --> Config Class Initialized
+INFO - 2025-02-23 23:53:03 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:03 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:03 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:03 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:07 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:07 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:07 --> Controller Class Initialized
+ERROR - 2025-02-23 23:53:07 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:53:16 --> Config Class Initialized
+INFO - 2025-02-23 23:53:16 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:53:16 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:53:16 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:16 --> URI Class Initialized
+INFO - 2025-02-23 23:53:16 --> Router Class Initialized
+INFO - 2025-02-23 23:53:16 --> Output Class Initialized
+INFO - 2025-02-23 23:53:16 --> Security Class Initialized
+DEBUG - 2025-02-23 23:53:16 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:53:16 --> Input Class Initialized
+INFO - 2025-02-23 23:53:16 --> Language Class Initialized
+INFO - 2025-02-23 23:53:16 --> Language Class Initialized
+INFO - 2025-02-23 23:53:16 --> Config Class Initialized
+INFO - 2025-02-23 23:53:16 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:16 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:16 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:16 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:18 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:18 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:18 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:53:18 --> Auth MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:18 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:53:18 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:18 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:53:18 --> Utility MX_Controller Initialized
+INFO - 2025-02-23 23:53:18 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2025-02-23 23:53:20 --> Final output sent to browser
+DEBUG - 2025-02-23 23:53:20 --> Total execution time: 3.7529
+INFO - 2025-02-23 23:53:22 --> Config Class Initialized
+INFO - 2025-02-23 23:53:22 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:53:22 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:53:22 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:22 --> URI Class Initialized
+INFO - 2025-02-23 23:53:22 --> Router Class Initialized
+INFO - 2025-02-23 23:53:22 --> Output Class Initialized
+INFO - 2025-02-23 23:53:22 --> Security Class Initialized
+DEBUG - 2025-02-23 23:53:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:53:22 --> Input Class Initialized
+INFO - 2025-02-23 23:53:22 --> Language Class Initialized
+INFO - 2025-02-23 23:53:22 --> Language Class Initialized
+INFO - 2025-02-23 23:53:22 --> Config Class Initialized
+INFO - 2025-02-23 23:53:22 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:22 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:22 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:22 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:23 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:23 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:23 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:23 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:53:23 --> Dashboard MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:23 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:53:23 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:23 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:53:23 --> Utility MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:24 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/header.php
+DEBUG - 2025-02-23 23:53:24 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/common_link.php
+DEBUG - 2025-02-23 23:53:24 --> File loaded: C:\xampp\htdocs\collections\application\modules/dashboard/views/dashboard.php
+DEBUG - 2025-02-23 23:53:24 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/footer.php
+DEBUG - 2025-02-23 23:53:24 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/general_template.php
+INFO - 2025-02-23 23:53:24 --> Final output sent to browser
+DEBUG - 2025-02-23 23:53:24 --> Total execution time: 1.4950
+INFO - 2025-02-23 23:53:24 --> Config Class Initialized
+INFO - 2025-02-23 23:53:24 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:53:24 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:53:24 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:24 --> Config Class Initialized
+INFO - 2025-02-23 23:53:24 --> URI Class Initialized
+INFO - 2025-02-23 23:53:24 --> Hooks Class Initialized
+INFO - 2025-02-23 23:53:24 --> Router Class Initialized
+DEBUG - 2025-02-23 23:53:24 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:53:24 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:24 --> Output Class Initialized
+INFO - 2025-02-23 23:53:24 --> URI Class Initialized
+INFO - 2025-02-23 23:53:24 --> Security Class Initialized
+DEBUG - 2025-02-23 23:53:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:53:24 --> Router Class Initialized
+INFO - 2025-02-23 23:53:24 --> Input Class Initialized
+INFO - 2025-02-23 23:53:24 --> Language Class Initialized
+INFO - 2025-02-23 23:53:24 --> Output Class Initialized
+INFO - 2025-02-23 23:53:24 --> Language Class Initialized
+INFO - 2025-02-23 23:53:24 --> Config Class Initialized
+INFO - 2025-02-23 23:53:24 --> Security Class Initialized
+DEBUG - 2025-02-23 23:53:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:53:24 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:24 --> Input Class Initialized
+INFO - 2025-02-23 23:53:24 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:24 --> Language Class Initialized
+INFO - 2025-02-23 23:53:24 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:24 --> Language Class Initialized
+INFO - 2025-02-23 23:53:24 --> Config Class Initialized
+INFO - 2025-02-23 23:53:24 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:24 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:24 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:24 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:24 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:25 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:25 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:25 --> Controller Class Initialized
+ERROR - 2025-02-23 23:53:25 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:53:26 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:26 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:26 --> Controller Class Initialized
+ERROR - 2025-02-23 23:53:26 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:53:49 --> Config Class Initialized
+INFO - 2025-02-23 23:53:49 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:53:49 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:53:49 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:49 --> URI Class Initialized
+INFO - 2025-02-23 23:53:49 --> Router Class Initialized
+INFO - 2025-02-23 23:53:49 --> Output Class Initialized
+INFO - 2025-02-23 23:53:49 --> Security Class Initialized
+DEBUG - 2025-02-23 23:53:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:53:49 --> Input Class Initialized
+INFO - 2025-02-23 23:53:49 --> Language Class Initialized
+INFO - 2025-02-23 23:53:49 --> Language Class Initialized
+INFO - 2025-02-23 23:53:49 --> Config Class Initialized
+INFO - 2025-02-23 23:53:49 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:49 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:49 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:49 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:50 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:50 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:50 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:50 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:53:50 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:50 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:53:50 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:50 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:53:50 --> Utility MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:52 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/header.php
+DEBUG - 2025-02-23 23:53:52 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/common_link.php
+DEBUG - 2025-02-23 23:53:52 --> File loaded: C:\xampp\htdocs\collections\application\modules/user/views/table.php
+DEBUG - 2025-02-23 23:53:52 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/footer.php
+DEBUG - 2025-02-23 23:53:52 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/general_template.php
+INFO - 2025-02-23 23:53:52 --> Final output sent to browser
+DEBUG - 2025-02-23 23:53:52 --> Total execution time: 3.0945
+INFO - 2025-02-23 23:53:52 --> Config Class Initialized
+INFO - 2025-02-23 23:53:52 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:53:52 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:53:52 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:52 --> URI Class Initialized
+INFO - 2025-02-23 23:53:52 --> Router Class Initialized
+INFO - 2025-02-23 23:53:52 --> Output Class Initialized
+INFO - 2025-02-23 23:53:52 --> Security Class Initialized
+DEBUG - 2025-02-23 23:53:52 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:53:52 --> Input Class Initialized
+INFO - 2025-02-23 23:53:52 --> Language Class Initialized
+INFO - 2025-02-23 23:53:52 --> Language Class Initialized
+INFO - 2025-02-23 23:53:52 --> Config Class Initialized
+INFO - 2025-02-23 23:53:52 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:52 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:52 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:52 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:54 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:54 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:54 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:54 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:53:54 --> User_profile MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:54 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:53:54 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:54 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:53:54 --> Utility MX_Controller Initialized
+DEBUG - 2025-02-23 23:53:55 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/header.php
+DEBUG - 2025-02-23 23:53:55 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/common_link.php
+DEBUG - 2025-02-23 23:53:55 --> File loaded: C:\xampp\htdocs\collections\application\modules/user_profile/views/table.php
+DEBUG - 2025-02-23 23:53:55 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/footer.php
+DEBUG - 2025-02-23 23:53:55 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/general_template.php
+INFO - 2025-02-23 23:53:55 --> Final output sent to browser
+DEBUG - 2025-02-23 23:53:55 --> Total execution time: 3.0268
+INFO - 2025-02-23 23:53:55 --> Config Class Initialized
+INFO - 2025-02-23 23:53:55 --> Config Class Initialized
+INFO - 2025-02-23 23:53:55 --> Hooks Class Initialized
+INFO - 2025-02-23 23:53:55 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:53:55 --> UTF-8 Support Enabled
+DEBUG - 2025-02-23 23:53:55 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:53:55 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:55 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:53:55 --> URI Class Initialized
+INFO - 2025-02-23 23:53:55 --> URI Class Initialized
+INFO - 2025-02-23 23:53:55 --> Router Class Initialized
+INFO - 2025-02-23 23:53:55 --> Router Class Initialized
+INFO - 2025-02-23 23:53:55 --> Output Class Initialized
+INFO - 2025-02-23 23:53:55 --> Output Class Initialized
+INFO - 2025-02-23 23:53:55 --> Security Class Initialized
+INFO - 2025-02-23 23:53:55 --> Security Class Initialized
+DEBUG - 2025-02-23 23:53:55 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2025-02-23 23:53:55 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:53:55 --> Input Class Initialized
+INFO - 2025-02-23 23:53:55 --> Input Class Initialized
+INFO - 2025-02-23 23:53:55 --> Language Class Initialized
+INFO - 2025-02-23 23:53:55 --> Language Class Initialized
+INFO - 2025-02-23 23:53:55 --> Language Class Initialized
+INFO - 2025-02-23 23:53:55 --> Language Class Initialized
+INFO - 2025-02-23 23:53:55 --> Config Class Initialized
+INFO - 2025-02-23 23:53:55 --> Config Class Initialized
+INFO - 2025-02-23 23:53:55 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:55 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:55 --> Loader Class Initialized
+INFO - 2025-02-23 23:53:55 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:55 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:53:55 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:53:55 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:56 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:53:57 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:53:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:57 --> Form Validation Class Initialized
+INFO - 2025-02-23 23:53:57 --> Session: Class initialized using 'files' driver.
+DEBUG - 2025-02-23 23:53:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:53:57 --> Controller Class Initialized
+ERROR - 2025-02-23 23:53:57 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:53:57 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:53:57 --> Controller Class Initialized
+ERROR - 2025-02-23 23:53:57 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:55:58 --> Config Class Initialized
+INFO - 2025-02-23 23:55:58 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:55:58 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:55:58 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:55:58 --> URI Class Initialized
+INFO - 2025-02-23 23:55:58 --> Router Class Initialized
+INFO - 2025-02-23 23:55:58 --> Output Class Initialized
+INFO - 2025-02-23 23:55:58 --> Security Class Initialized
+DEBUG - 2025-02-23 23:55:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:55:58 --> Input Class Initialized
+INFO - 2025-02-23 23:55:58 --> Language Class Initialized
+INFO - 2025-02-23 23:55:58 --> Language Class Initialized
+INFO - 2025-02-23 23:55:58 --> Config Class Initialized
+INFO - 2025-02-23 23:55:58 --> Loader Class Initialized
+INFO - 2025-02-23 23:55:58 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:55:58 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:55:58 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:56:00 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:56:00 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:56:00 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:56:00 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:56:00 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:56:00 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:56:00 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:56:00 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:56:00 --> Utility MX_Controller Initialized
+INFO - 2025-02-23 23:56:01 --> Config Class Initialized
+INFO - 2025-02-23 23:56:01 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:56:01 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:56:01 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:56:01 --> URI Class Initialized
+INFO - 2025-02-23 23:56:01 --> Router Class Initialized
+INFO - 2025-02-23 23:56:01 --> Output Class Initialized
+INFO - 2025-02-23 23:56:01 --> Security Class Initialized
+DEBUG - 2025-02-23 23:56:01 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:56:01 --> Input Class Initialized
+INFO - 2025-02-23 23:56:01 --> Language Class Initialized
+INFO - 2025-02-23 23:56:01 --> Language Class Initialized
+INFO - 2025-02-23 23:56:01 --> Config Class Initialized
+INFO - 2025-02-23 23:56:01 --> Loader Class Initialized
+INFO - 2025-02-23 23:56:01 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:56:01 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:56:01 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:56:11 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:56:11 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2025-02-23 23:56:11 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/header.php
+DEBUG - 2025-02-23 23:56:11 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/common_link.php
+DEBUG - 2025-02-23 23:56:11 --> File loaded: C:\xampp\htdocs\collections\application\modules/user/views/table.php
+DEBUG - 2025-02-23 23:56:11 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/footer.php
+DEBUG - 2025-02-23 23:56:11 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/general_template.php
+INFO - 2025-02-23 23:56:11 --> Final output sent to browser
+DEBUG - 2025-02-23 23:56:11 --> Total execution time: 13.4496
+INFO - 2025-02-23 23:56:11 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:56:11 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:56:11 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:56:11 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:56:11 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:56:11 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:56:11 --> Utility MX_Controller Initialized
+DEBUG - 2025-02-23 23:56:13 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/header.php
+DEBUG - 2025-02-23 23:56:13 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/common_link.php
+DEBUG - 2025-02-23 23:56:13 --> File loaded: C:\xampp\htdocs\collections\application\modules/user/views/table.php
+DEBUG - 2025-02-23 23:56:13 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/footer.php
+DEBUG - 2025-02-23 23:56:13 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/general_template.php
+INFO - 2025-02-23 23:56:13 --> Final output sent to browser
+DEBUG - 2025-02-23 23:56:13 --> Total execution time: 11.9166
+INFO - 2025-02-23 23:56:13 --> Config Class Initialized
+INFO - 2025-02-23 23:56:13 --> Hooks Class Initialized
+INFO - 2025-02-23 23:56:13 --> Config Class Initialized
+INFO - 2025-02-23 23:56:13 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:56:13 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:56:13 --> Utf8 Class Initialized
+DEBUG - 2025-02-23 23:56:13 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:56:13 --> URI Class Initialized
+INFO - 2025-02-23 23:56:13 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:56:13 --> Router Class Initialized
+INFO - 2025-02-23 23:56:13 --> URI Class Initialized
+INFO - 2025-02-23 23:56:13 --> Output Class Initialized
+INFO - 2025-02-23 23:56:13 --> Security Class Initialized
+INFO - 2025-02-23 23:56:13 --> Router Class Initialized
+DEBUG - 2025-02-23 23:56:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:56:13 --> Input Class Initialized
+INFO - 2025-02-23 23:56:13 --> Output Class Initialized
+INFO - 2025-02-23 23:56:13 --> Language Class Initialized
+INFO - 2025-02-23 23:56:14 --> Security Class Initialized
+INFO - 2025-02-23 23:56:14 --> Language Class Initialized
+INFO - 2025-02-23 23:56:14 --> Config Class Initialized
+DEBUG - 2025-02-23 23:56:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:56:14 --> Input Class Initialized
+INFO - 2025-02-23 23:56:14 --> Loader Class Initialized
+INFO - 2025-02-23 23:56:14 --> Language Class Initialized
+INFO - 2025-02-23 23:56:14 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:56:14 --> Language Class Initialized
+INFO - 2025-02-23 23:56:14 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:56:14 --> Config Class Initialized
+INFO - 2025-02-23 23:56:14 --> Loader Class Initialized
+INFO - 2025-02-23 23:56:14 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:56:14 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:56:14 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:56:14 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:56:15 --> Form Validation Class Initialized
+INFO - 2025-02-23 23:56:15 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:56:15 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:56:15 --> Session: Class initialized using 'files' driver.
+DEBUG - 2025-02-23 23:56:15 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:56:15 --> Controller Class Initialized
+ERROR - 2025-02-23 23:56:15 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:56:15 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:56:15 --> Controller Class Initialized
+ERROR - 2025-02-23 23:56:15 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:57:13 --> Config Class Initialized
+INFO - 2025-02-23 23:57:13 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:57:13 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:57:13 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:57:13 --> URI Class Initialized
+INFO - 2025-02-23 23:57:13 --> Router Class Initialized
+INFO - 2025-02-23 23:57:13 --> Output Class Initialized
+INFO - 2025-02-23 23:57:13 --> Security Class Initialized
+DEBUG - 2025-02-23 23:57:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:57:13 --> Input Class Initialized
+INFO - 2025-02-23 23:57:13 --> Language Class Initialized
+INFO - 2025-02-23 23:57:13 --> Language Class Initialized
+INFO - 2025-02-23 23:57:13 --> Config Class Initialized
+INFO - 2025-02-23 23:57:13 --> Loader Class Initialized
+INFO - 2025-02-23 23:57:13 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:57:13 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:57:13 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:57:15 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:57:15 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:57:15 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:57:15 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:57:15 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:15 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:57:15 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:15 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:57:15 --> Utility MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:17 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/header.php
+DEBUG - 2025-02-23 23:57:17 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/common_link.php
+DEBUG - 2025-02-23 23:57:17 --> File loaded: C:\xampp\htdocs\collections\application\modules/user/views/table.php
+DEBUG - 2025-02-23 23:57:17 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/footer.php
+DEBUG - 2025-02-23 23:57:17 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/general_template.php
+INFO - 2025-02-23 23:57:17 --> Final output sent to browser
+DEBUG - 2025-02-23 23:57:17 --> Total execution time: 4.2642
+INFO - 2025-02-23 23:57:17 --> Config Class Initialized
+INFO - 2025-02-23 23:57:17 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:57:17 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:57:17 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:57:17 --> Config Class Initialized
+INFO - 2025-02-23 23:57:17 --> URI Class Initialized
+INFO - 2025-02-23 23:57:17 --> Hooks Class Initialized
+INFO - 2025-02-23 23:57:17 --> Router Class Initialized
+DEBUG - 2025-02-23 23:57:17 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:57:17 --> Output Class Initialized
+INFO - 2025-02-23 23:57:17 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:57:17 --> Security Class Initialized
+INFO - 2025-02-23 23:57:17 --> URI Class Initialized
+DEBUG - 2025-02-23 23:57:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:57:17 --> Input Class Initialized
+INFO - 2025-02-23 23:57:17 --> Router Class Initialized
+INFO - 2025-02-23 23:57:17 --> Language Class Initialized
+INFO - 2025-02-23 23:57:17 --> Output Class Initialized
+INFO - 2025-02-23 23:57:17 --> Language Class Initialized
+INFO - 2025-02-23 23:57:17 --> Config Class Initialized
+INFO - 2025-02-23 23:57:17 --> Security Class Initialized
+DEBUG - 2025-02-23 23:57:17 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:57:17 --> Loader Class Initialized
+INFO - 2025-02-23 23:57:17 --> Input Class Initialized
+INFO - 2025-02-23 23:57:17 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:57:17 --> Language Class Initialized
+INFO - 2025-02-23 23:57:17 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:57:17 --> Language Class Initialized
+INFO - 2025-02-23 23:57:17 --> Config Class Initialized
+INFO - 2025-02-23 23:57:17 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:57:17 --> Loader Class Initialized
+INFO - 2025-02-23 23:57:17 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:57:17 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:57:17 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:57:19 --> Form Validation Class Initialized
+INFO - 2025-02-23 23:57:19 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:57:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:57:19 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:57:19 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:57:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+ERROR - 2025-02-23 23:57:19 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:57:19 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:57:19 --> Controller Class Initialized
+ERROR - 2025-02-23 23:57:19 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:57:23 --> Config Class Initialized
+INFO - 2025-02-23 23:57:23 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:57:23 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:57:23 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:57:23 --> URI Class Initialized
+INFO - 2025-02-23 23:57:23 --> Router Class Initialized
+INFO - 2025-02-23 23:57:23 --> Output Class Initialized
+INFO - 2025-02-23 23:57:23 --> Security Class Initialized
+DEBUG - 2025-02-23 23:57:23 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:57:23 --> Input Class Initialized
+INFO - 2025-02-23 23:57:23 --> Language Class Initialized
+INFO - 2025-02-23 23:57:23 --> Language Class Initialized
+INFO - 2025-02-23 23:57:23 --> Config Class Initialized
+INFO - 2025-02-23 23:57:23 --> Loader Class Initialized
+INFO - 2025-02-23 23:57:23 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:57:23 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:57:23 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:57:25 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:57:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:57:25 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:57:25 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:57:25 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:25 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:57:25 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:25 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:57:25 --> Utility MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:31 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/header.php
+DEBUG - 2025-02-23 23:57:31 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/common_link.php
+DEBUG - 2025-02-23 23:57:31 --> File loaded: C:\xampp\htdocs\collections\application\modules/user/views/edit.php
+DEBUG - 2025-02-23 23:57:31 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/footer.php
+DEBUG - 2025-02-23 23:57:31 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/general_template.php
+INFO - 2025-02-23 23:57:31 --> Final output sent to browser
+DEBUG - 2025-02-23 23:57:31 --> Total execution time: 7.9983
+INFO - 2025-02-23 23:57:31 --> Config Class Initialized
+INFO - 2025-02-23 23:57:31 --> Config Class Initialized
+INFO - 2025-02-23 23:57:31 --> Hooks Class Initialized
+INFO - 2025-02-23 23:57:31 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:57:31 --> UTF-8 Support Enabled
+DEBUG - 2025-02-23 23:57:31 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:57:31 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:57:31 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:57:31 --> URI Class Initialized
+INFO - 2025-02-23 23:57:31 --> URI Class Initialized
+INFO - 2025-02-23 23:57:31 --> Router Class Initialized
+INFO - 2025-02-23 23:57:31 --> Router Class Initialized
+INFO - 2025-02-23 23:57:31 --> Output Class Initialized
+INFO - 2025-02-23 23:57:31 --> Output Class Initialized
+INFO - 2025-02-23 23:57:31 --> Security Class Initialized
+INFO - 2025-02-23 23:57:31 --> Security Class Initialized
+DEBUG - 2025-02-23 23:57:31 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2025-02-23 23:57:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:57:31 --> Input Class Initialized
+INFO - 2025-02-23 23:57:31 --> Input Class Initialized
+INFO - 2025-02-23 23:57:31 --> Language Class Initialized
+INFO - 2025-02-23 23:57:31 --> Language Class Initialized
+INFO - 2025-02-23 23:57:31 --> Language Class Initialized
+INFO - 2025-02-23 23:57:32 --> Config Class Initialized
+INFO - 2025-02-23 23:57:32 --> Language Class Initialized
+INFO - 2025-02-23 23:57:32 --> Config Class Initialized
+INFO - 2025-02-23 23:57:32 --> Loader Class Initialized
+INFO - 2025-02-23 23:57:32 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:57:32 --> Loader Class Initialized
+INFO - 2025-02-23 23:57:32 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:57:32 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:57:32 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:57:32 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:57:32 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:57:34 --> Form Validation Class Initialized
+INFO - 2025-02-23 23:57:34 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:57:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2025-02-23 23:57:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:57:34 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:57:34 --> Controller Class Initialized
+ERROR - 2025-02-23 23:57:34 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:57:34 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:57:34 --> Controller Class Initialized
+ERROR - 2025-02-23 23:57:35 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:57:43 --> Config Class Initialized
+INFO - 2025-02-23 23:57:43 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:57:43 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:57:43 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:57:43 --> URI Class Initialized
+INFO - 2025-02-23 23:57:43 --> Router Class Initialized
+INFO - 2025-02-23 23:57:43 --> Output Class Initialized
+INFO - 2025-02-23 23:57:43 --> Security Class Initialized
+DEBUG - 2025-02-23 23:57:43 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:57:43 --> Input Class Initialized
+INFO - 2025-02-23 23:57:43 --> Language Class Initialized
+INFO - 2025-02-23 23:57:43 --> Language Class Initialized
+INFO - 2025-02-23 23:57:43 --> Config Class Initialized
+INFO - 2025-02-23 23:57:43 --> Loader Class Initialized
+INFO - 2025-02-23 23:57:43 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:57:43 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:57:43 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:57:44 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:57:44 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:57:44 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:57:44 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:57:44 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:44 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:57:44 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:44 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:57:44 --> Utility MX_Controller Initialized
+INFO - 2025-02-23 23:57:57 --> Config Class Initialized
+INFO - 2025-02-23 23:57:57 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:57:57 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:57:57 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:57:57 --> URI Class Initialized
+INFO - 2025-02-23 23:57:57 --> Router Class Initialized
+INFO - 2025-02-23 23:57:57 --> Output Class Initialized
+INFO - 2025-02-23 23:57:57 --> Security Class Initialized
+DEBUG - 2025-02-23 23:57:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:57:57 --> Input Class Initialized
+INFO - 2025-02-23 23:57:57 --> Language Class Initialized
+INFO - 2025-02-23 23:57:57 --> Language Class Initialized
+INFO - 2025-02-23 23:57:57 --> Config Class Initialized
+INFO - 2025-02-23 23:57:57 --> Loader Class Initialized
+INFO - 2025-02-23 23:57:57 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:57:57 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:57:57 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:57:59 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:57:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:57:59 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:57:59 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:57:59 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:59 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:57:59 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:57:59 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:57:59 --> Utility MX_Controller Initialized
+INFO - 2025-02-23 23:58:51 --> Config Class Initialized
+INFO - 2025-02-23 23:58:51 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:58:51 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:58:51 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:58:51 --> URI Class Initialized
+INFO - 2025-02-23 23:58:51 --> Router Class Initialized
+INFO - 2025-02-23 23:58:51 --> Output Class Initialized
+INFO - 2025-02-23 23:58:51 --> Security Class Initialized
+DEBUG - 2025-02-23 23:58:51 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:58:51 --> Input Class Initialized
+INFO - 2025-02-23 23:58:51 --> Language Class Initialized
+INFO - 2025-02-23 23:58:51 --> Language Class Initialized
+INFO - 2025-02-23 23:58:51 --> Config Class Initialized
+INFO - 2025-02-23 23:58:51 --> Loader Class Initialized
+INFO - 2025-02-23 23:58:51 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:58:51 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:58:51 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:58:53 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:58:53 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:58:53 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:58:53 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:58:53 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:58:53 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:58:53 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:58:53 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:58:53 --> Utility MX_Controller Initialized
+INFO - 2025-02-23 23:58:59 --> Config Class Initialized
+INFO - 2025-02-23 23:58:59 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:58:59 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:58:59 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:58:59 --> URI Class Initialized
+INFO - 2025-02-23 23:58:59 --> Router Class Initialized
+INFO - 2025-02-23 23:58:59 --> Output Class Initialized
+INFO - 2025-02-23 23:58:59 --> Security Class Initialized
+DEBUG - 2025-02-23 23:58:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:58:59 --> Input Class Initialized
+INFO - 2025-02-23 23:58:59 --> Language Class Initialized
+INFO - 2025-02-23 23:58:59 --> Language Class Initialized
+INFO - 2025-02-23 23:58:59 --> Config Class Initialized
+INFO - 2025-02-23 23:58:59 --> Loader Class Initialized
+INFO - 2025-02-23 23:58:59 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:58:59 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:58:59 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:59:00 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:59:00 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:59:00 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:59:00 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:59:00 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:59:00 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:59:00 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:59:00 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:59:00 --> Utility MX_Controller Initialized
+DEBUG - 2025-02-23 23:59:06 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/header.php
+DEBUG - 2025-02-23 23:59:06 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/common_link.php
+DEBUG - 2025-02-23 23:59:06 --> File loaded: C:\xampp\htdocs\collections\application\modules/user/views/edit.php
+DEBUG - 2025-02-23 23:59:06 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/footer.php
+DEBUG - 2025-02-23 23:59:06 --> File loaded: C:\xampp\htdocs\collections\application\modules/template/views/general_template.php
+INFO - 2025-02-23 23:59:06 --> Final output sent to browser
+DEBUG - 2025-02-23 23:59:06 --> Total execution time: 7.6273
+INFO - 2025-02-23 23:59:06 --> Config Class Initialized
+INFO - 2025-02-23 23:59:06 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:59:06 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:59:06 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:59:06 --> Config Class Initialized
+INFO - 2025-02-23 23:59:06 --> URI Class Initialized
+INFO - 2025-02-23 23:59:06 --> Hooks Class Initialized
+INFO - 2025-02-23 23:59:06 --> Router Class Initialized
+DEBUG - 2025-02-23 23:59:06 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:59:06 --> Output Class Initialized
+INFO - 2025-02-23 23:59:06 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:59:06 --> Security Class Initialized
+INFO - 2025-02-23 23:59:06 --> URI Class Initialized
+DEBUG - 2025-02-23 23:59:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:59:07 --> Input Class Initialized
+INFO - 2025-02-23 23:59:07 --> Router Class Initialized
+INFO - 2025-02-23 23:59:07 --> Language Class Initialized
+INFO - 2025-02-23 23:59:07 --> Output Class Initialized
+INFO - 2025-02-23 23:59:07 --> Language Class Initialized
+INFO - 2025-02-23 23:59:07 --> Config Class Initialized
+INFO - 2025-02-23 23:59:07 --> Security Class Initialized
+DEBUG - 2025-02-23 23:59:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:59:07 --> Loader Class Initialized
+INFO - 2025-02-23 23:59:07 --> Input Class Initialized
+INFO - 2025-02-23 23:59:07 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:59:07 --> Language Class Initialized
+INFO - 2025-02-23 23:59:07 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:59:07 --> Language Class Initialized
+INFO - 2025-02-23 23:59:07 --> Config Class Initialized
+INFO - 2025-02-23 23:59:07 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:59:07 --> Loader Class Initialized
+INFO - 2025-02-23 23:59:07 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:59:07 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:59:07 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:59:09 --> Form Validation Class Initialized
+INFO - 2025-02-23 23:59:09 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:59:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2025-02-23 23:59:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:59:09 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:59:09 --> Controller Class Initialized
+ERROR - 2025-02-23 23:59:09 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:59:09 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:59:09 --> Controller Class Initialized
+ERROR - 2025-02-23 23:59:09 --> 404 Page Not Found: /index
+INFO - 2025-02-23 23:59:13 --> Config Class Initialized
+INFO - 2025-02-23 23:59:13 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:59:13 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:59:13 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:59:13 --> URI Class Initialized
+INFO - 2025-02-23 23:59:13 --> Router Class Initialized
+INFO - 2025-02-23 23:59:13 --> Output Class Initialized
+INFO - 2025-02-23 23:59:13 --> Security Class Initialized
+DEBUG - 2025-02-23 23:59:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:59:13 --> Input Class Initialized
+INFO - 2025-02-23 23:59:13 --> Language Class Initialized
+INFO - 2025-02-23 23:59:13 --> Language Class Initialized
+INFO - 2025-02-23 23:59:13 --> Config Class Initialized
+INFO - 2025-02-23 23:59:13 --> Loader Class Initialized
+INFO - 2025-02-23 23:59:13 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:59:13 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:59:13 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:59:15 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:59:15 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:59:15 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:59:15 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:59:15 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:59:15 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:59:15 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:59:15 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:59:15 --> Utility MX_Controller Initialized
+INFO - 2025-02-23 23:59:28 --> Config Class Initialized
+INFO - 2025-02-23 23:59:28 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:59:28 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:59:28 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:59:28 --> URI Class Initialized
+INFO - 2025-02-23 23:59:28 --> Router Class Initialized
+INFO - 2025-02-23 23:59:28 --> Output Class Initialized
+INFO - 2025-02-23 23:59:28 --> Security Class Initialized
+DEBUG - 2025-02-23 23:59:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:59:28 --> Input Class Initialized
+INFO - 2025-02-23 23:59:28 --> Language Class Initialized
+INFO - 2025-02-23 23:59:28 --> Language Class Initialized
+INFO - 2025-02-23 23:59:28 --> Config Class Initialized
+INFO - 2025-02-23 23:59:28 --> Loader Class Initialized
+INFO - 2025-02-23 23:59:28 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:59:28 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:59:28 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:59:29 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:59:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:59:29 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:59:29 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:59:29 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:59:29 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:59:29 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:59:29 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:59:29 --> Utility MX_Controller Initialized
+INFO - 2025-02-23 23:59:47 --> Config Class Initialized
+INFO - 2025-02-23 23:59:47 --> Hooks Class Initialized
+DEBUG - 2025-02-23 23:59:47 --> UTF-8 Support Enabled
+INFO - 2025-02-23 23:59:47 --> Utf8 Class Initialized
+INFO - 2025-02-23 23:59:47 --> URI Class Initialized
+INFO - 2025-02-23 23:59:47 --> Router Class Initialized
+INFO - 2025-02-23 23:59:47 --> Output Class Initialized
+INFO - 2025-02-23 23:59:47 --> Security Class Initialized
+DEBUG - 2025-02-23 23:59:47 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-02-23 23:59:47 --> Input Class Initialized
+INFO - 2025-02-23 23:59:47 --> Language Class Initialized
+INFO - 2025-02-23 23:59:47 --> Language Class Initialized
+INFO - 2025-02-23 23:59:47 --> Config Class Initialized
+INFO - 2025-02-23 23:59:47 --> Loader Class Initialized
+INFO - 2025-02-23 23:59:47 --> Helper loaded: url_helper
+INFO - 2025-02-23 23:59:47 --> Helper loaded: form_helper
+INFO - 2025-02-23 23:59:47 --> Database Driver Class Initialized
+INFO - 2025-02-23 23:59:49 --> Form Validation Class Initialized
+DEBUG - 2025-02-23 23:59:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-02-23 23:59:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-02-23 23:59:49 --> Controller Class Initialized
+DEBUG - 2025-02-23 23:59:49 --> User MX_Controller Initialized
+DEBUG - 2025-02-23 23:59:49 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/template/controllers/Template.php
+DEBUG - 2025-02-23 23:59:49 --> Template MX_Controller Initialized
+DEBUG - 2025-02-23 23:59:49 --> File loaded: C:\xampp\htdocs\collections\application\controllers/../modules/utility/controllers/Utility.php
+DEBUG - 2025-02-23 23:59:49 --> Utility MX_Controller Initialized

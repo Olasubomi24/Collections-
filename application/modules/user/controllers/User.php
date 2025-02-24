@@ -248,16 +248,12 @@ public function edit_user() {
 $userData = [
     "email" => $this->input->post('email'),
     "roleId" => $this->input->post('roleId'),
-    "isActive" => ($this->input->post('isActive'))// Convert string "true"/"false" to boolean
+    "isActive" => ($this->input->post('isActive') === "true") ? 1 : 0 // Ensures 1 for true, 0 for false
 ];
-
-print_r($userData);
-die();
 
 
         // Call the utility method to update the user
-        $result = $this->utility->update_user($id, $userData);
-print_r($result); die();    
+        $result = $this->utility->update_user($id, $userData); 
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'user updated successfully']);
         } else {

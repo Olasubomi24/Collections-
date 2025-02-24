@@ -196,6 +196,91 @@ public function callapis($method, $url, $data = [], $isMultipart = false)
     return json_decode($response, true);
 }
 
+// public function callapiss($method, $url, $data = [], $isMultipart = false)
+// {
+//     $token = $_SESSION['access_token'];
+    
+//     // ✅ Default headers (do NOT set Content-Type manually for multipart)
+//     $headers = [
+//         "Authorization: Bearer $token",
+//         "Accept: application/json",
+//         "Accept: */*"
+//     ];
+
+//     $curl = curl_init();
+    
+//     curl_setopt_array($curl, [
+//         CURLOPT_URL => $url,
+//         CURLOPT_RETURNTRANSFER => true,
+//         CURLOPT_CUSTOMREQUEST => $method,
+//         CURLOPT_HTTPHEADER => $headers
+//     ]);
+
+//     if (!empty($data)) {
+//         if ($isMultipart) {
+//             curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // ✅ Send as multipart form-data
+//         } else {
+//             $headers[] = "Content-Type: application/json";
+//             curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+//         }
+//     }
+
+//     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers); // ✅ Update headers
+
+//     $response = curl_exec($curl);
+//     $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE); // ✅ Get HTTP status code
+//     curl_close($curl);
+
+//     // ✅ Check API response code
+//     if ($httpCode !== 200) {
+//         return [
+//             'status' => 'error',
+//             'message' => 'API request failed',
+//             'errorCode' => $httpCode,
+//             'response' => json_decode($response, true)
+//         ];
+//     }
+
+//     return json_decode($response, true);
+// }
+public function callapiss($method, $url, $data = [], $isMultipart = false)
+{
+    $token = $_SESSION['access_token'];
+
+    // Default headers (do NOT set Content-Type manually for multipart)
+    $headers = [
+        "Authorization: Bearer $token",
+        "Accept: application/json"
+    ];
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => $method,
+        CURLOPT_HTTPHEADER => $headers
+    ]);
+
+    if (!empty($data)) {
+        if ($isMultipart) {
+            // ✅ Send as multipart form-data
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        } else {
+            // ✅ Send as JSON
+            $headers[] = "Content-Type: application/json";
+            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+        }
+    }
+
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers); // Update headers
+
+    $response = curl_exec($curl);
+    curl_close($curl);
+
+    return json_decode($response, true);
+}
+
 
 
 public function get_hospitals()
@@ -216,10 +301,16 @@ public function create_hospital($data)
     return $this->callapis('POST', "https://api.macrotech.com.ng/api/v1/hospitals", $data, true); // Set $isMultipart to true
 }
 
-public function update_hospital($id, $data)
+// public function update_hospital($id, $data)
+// {
+//     return $this->callapis('PUT', "https://api.macrotech.com.ng/api/v1/hospitals/$id", $data);
+// }
+
+public function update_hospital($id, $data, $isMultipart = false)
 {
-    return $this->callapis('PUT', "https://api.macrotech.com.ng/api/v1/hospitals/$id", $data);
+    return $this->callapiss('PUT', "https://api.macrotech.com.ng/api/v1/hospitals/$id", $data, $isMultipart);
 }
+
 
 public function get_patient_wallet_txn($var = [])
 {
