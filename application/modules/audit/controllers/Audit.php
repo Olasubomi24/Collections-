@@ -89,17 +89,75 @@ class Audit extends MX_Controller
     //     $this->template->general_template($data);
     // }
 
-    public function index()
-{
-    $data['title'] = 'audits List';
-    $auditsData = $this->utility->get_audit();
-   // print_r($auditsData); die();
-    // Ensure the result contains data
-    $data['audits'] = isset($auditsData['result']['items']) && is_array($auditsData['result']['items']) 
-        ? $auditsData['result']['items'] 
-        : [];
+//     public function index()
+// {
+//     $data['title'] = 'audits List';
+//     $auditsData = $this->utility->get_audit();
+//    // print_r($auditsData); die();
+//     // Ensure the result contains data
+//     $data['audits'] = isset($auditsData['result']['items']) && is_array($auditsData['result']['items']) 
+//         ? $auditsData['result']['items'] 
+//         : [];
 
-    $data['content_view'] = 'audit/table';
+//     $data['content_view'] = 'audit/table';
+//     $this->template->general_template($data);
+// }
+
+public function index()
+{
+    if ($this->input->is_ajax_request()) {
+        // Get input values
+        $startDate = trim($this->input->post('startDate'));
+        $endDate = trim($this->input->post('endDate'));
+
+        log_message('debug', "Received AJAX Request: Start Date = {$startDate}, End Date = {$endDate}");
+
+        // Initialize filter array
+        $var = [];
+
+        // Validate and format dates if provided
+        if (!empty($startDate) && strtotime($startDate)) {
+            $var['startDate'] = date('Y/m/d', strtotime($startDate));
+        }
+
+        if (!empty($endDate) && strtotime($endDate)) {
+            $var['endDate'] = date('Y/m/d', strtotime($endDate));
+        }
+
+        log_message('debug', 'Formatted Filters: ' . json_encode($var));
+
+        // Fetch filtered data from API
+        $collectionsData = $this->utility->get_audit($var);
+        log_message('debug', 'API Response: ' . json_encode($collectionsData));
+
+        // Check if API response contains valid data
+        $network_result = $collectionsData['result']['data'] ?? [];
+        
+        $response = [
+            'status'  => !empty($network_result) ? 'success' : 'error',
+            'message' => !empty($network_result) ? 'Data fetched successfully.' : 'No data found for the selected filters.',
+            'data'    => $network_result
+        ];
+
+        // Send JSON response
+        return $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($response));
+    }
+
+    // If no AJAX request, fetch all data without filters
+    $collectionsData = $this->utility->get_audit([]);
+    $network_result = $collectionsData['result']['data'] ?? [];
+
+    $data = [
+        'title'          => 'Dashboard',
+        'content_view'   => 'audit/table',
+        'network_result' => $network_result,
+        'start_dt'       => $this->input->post('startDate') ?? '',
+        'end_dt'         => $this->input->post('endDate') ?? ''
+    ];
+
+    // Load the view template
     $this->template->general_template($data);
 }
 

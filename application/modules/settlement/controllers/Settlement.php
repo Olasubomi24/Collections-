@@ -101,7 +101,7 @@ class Settlement extends MX_Controller
 
 //     $data['content_view'] = 'settlement/table';
 //     $this->template->general_template($data);
-// }
+// }bank_settlement_index
 
 public function index()
 {
@@ -161,8 +161,122 @@ public function index()
     $this->template->general_template($data);
 }
 
+public function partner_index()
+{
+    if ($this->input->is_ajax_request()) {
+        // Get input values
+        $startDate = trim($this->input->post('startDate'));
+        $endDate = trim($this->input->post('endDate'));
+
+        log_message('debug', "Received AJAX Request: Start Date = {$startDate}, End Date = {$endDate}");
+
+        // Initialize filter array
+        $var = [];
+
+        // Validate and format dates if provided
+        if (!empty($startDate) && strtotime($startDate)) {
+            $var['startDate'] = date('Y/m/d', strtotime($startDate));
+        }
+
+        if (!empty($endDate) && strtotime($endDate)) {
+            $var['endDate'] = date('Y/m/d', strtotime($endDate));
+        }
+
+        log_message('debug', 'Formatted Filters: ' . json_encode($var));
+
+        // Fetch filtered data from API
+        $collectionsData = $this->utility->get_pertner_settlements($var);
+        log_message('debug', 'API Response: ' . json_encode($collectionsData));
+
+        // Check if API response contains valid data
+        $network_result = $collectionsData['result']['data'] ?? [];
+
+        $response = [
+            'status'  => !empty($network_result) ? 'success' : 'error',
+            'message' => !empty($network_result) ? 'Data fetched successfully.' : 'No data found for the selected filters.',
+            'data'    => $network_result
+        ];
+
+        // Send JSON response
+        return $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($response));
+    }
+
+    // If no AJAX request, fetch all data without filters
+    $collectionsData = $this->utility->get_pertner_settlements([]);
+    $network_result = $collectionsData['result']['data'] ?? [];
+//print_r($network_result); die;
+    $data = [
+        'title'          => 'Dashboard',
+        'content_view'   => 'settlement/partner',
+        'network_result' => $network_result,
+        'start_dt'       => $this->input->post('startDate') ?? '',
+        'end_dt'         => $this->input->post('endDate') ?? ''
+    ];
+
+    // Load the view template
+    $this->template->general_template($data);
+}
 
 
+public function bank_settlement_index()
+{
+    if ($this->input->is_ajax_request()) {
+        // Get input values
+        $startDate = trim($this->input->post('startDate'));
+        $endDate = trim($this->input->post('endDate'));
+
+        log_message('debug', "Received AJAX Request: Start Date = {$startDate}, End Date = {$endDate}");
+
+        // Initialize filter array
+        $var = [];
+
+        // Validate and format dates if provided
+        if (!empty($startDate) && strtotime($startDate)) {
+            $var['startDate'] = date('Y/m/d', strtotime($startDate));
+        }
+
+        if (!empty($endDate) && strtotime($endDate)) {
+            $var['endDate'] = date('Y/m/d', strtotime($endDate));
+        }
+
+        log_message('debug', 'Formatted Filters: ' . json_encode($var));
+
+        // Fetch filtered data from API
+        $collectionsData = $this->utility->get_bank_settlements($var);
+        log_message('debug', 'API Response: ' . json_encode($collectionsData));
+
+        // Check if API response contains valid data
+        $network_result = $collectionsData['result'] ?? [];
+
+        $response = [
+            'status'  => !empty($network_result) ? 'success' : 'error',
+            'message' => !empty($network_result) ? 'Data fetched successfully.' : 'No data found for the selected filters.',
+            'data'    => $network_result
+        ];
+
+        // Send JSON response
+        return $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($response));
+    }
+
+    // If no AJAX request, fetch all data without filters
+    $collectionsData = $this->utility->get_bank_settlements([]);
+    $network_result = $collectionsData['result'] ?? [];
+    //print_r($network_result); die;
+    $data = [
+        'title'          => 'Dashboard',
+        'content_view'   => 'settlement/bank_transfer_payment',
+        'network_result' => $network_result,
+        'start_dt'       => $this->input->post('startDate') ?? '',
+        'end_dt'         => $this->input->post('endDate') ?? ''
+    ];
+
+    // Load the view template
+    $this->template->general_template($data);
+}
 
 
     public function edits_settlement($id = null) {
@@ -219,4 +333,6 @@ public function index()
         show_404(); // Handle non-AJAX requests
     }
 }
+
+
 }

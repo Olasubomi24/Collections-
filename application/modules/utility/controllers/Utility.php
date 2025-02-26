@@ -568,6 +568,68 @@ public function get_settlements($var = [])
     return $response;
 }
 
+public function get_pertner_settlements($var = [])
+{
+    $base_url = "https://api.macrotech.com.ng/api/v1/merchant-bank-account-settlement/get-settlement-report";
+
+    // If no date values are provided, fetch all data first
+    if (empty($var['startDate']) && empty($var['endDate'])) {
+        return $this->call_apis('GET', $base_url);
+    }
+
+    // Build query parameters dynamically
+    $queryParams = [];
+
+    if (!empty($var['startDate'])) {
+        $queryParams['startDate'] = (new DateTime($var['startDate']))->format('Y-m-d'); // Use '-' instead of '/'
+    }
+
+    if (!empty($var['endDate'])) {
+        $queryParams['endDate'] = (new DateTime($var['endDate']))->format('Y-m-d'); // Use '-' instead of '/'
+    }
+
+    // Manually append query parameters to avoid encoding issues
+    if (!empty($queryParams)) {
+        $base_url .= '?' . urldecode(http_build_query($queryParams));
+    }
+  //print_r($base_url); die;
+    // Call the API
+    $response = $this->call_apis('GET', $base_url);
+  // print_r($response); die;
+    return $response;
+}
+
+public function get_bank_settlements($var = [])
+{
+    $base_url = "http://95.111.241.7:3100/notifications/all-payment-notifications";
+
+    // If no date values are provided, fetch all data first
+    if (empty($var['startDate']) && empty($var['endDate'])) {
+        return $this->call_apis('GET', $base_url);
+    }
+
+    // Build query parameters dynamically
+    $queryParams = [];
+
+    if (!empty($var['startDate'])) {
+        $queryParams['startDate'] = (new DateTime($var['startDate']))->format('Y-m-d'); // Use '-' instead of '/'
+    }
+
+    if (!empty($var['endDate'])) {
+        $queryParams['endDate'] = (new DateTime($var['endDate']))->format('Y-m-d'); // Use '-' instead of '/'
+    }
+
+    // Manually append query parameters to avoid encoding issues
+    if (!empty($queryParams)) {
+        $base_url .= '?' . urldecode(http_build_query($queryParams));
+    }
+  //print_r($base_url); die;
+    // Call the API
+    $response = $this->call_apis('GET', $base_url);
+  // print_r($response); die;
+    return $response;
+}
+
 
 
 
@@ -666,13 +728,46 @@ public function update_user($id, $data)
     //     $callAPi = $this ->call_api('Q_POST',$url,$var);
     //     return json_decode($callAPi,true);
     // }
-    public function get_audit()
-    {
-        $url = "https://api.macrotech.com.ng/api/v1/audit-trail";
-        $response = $this->call_apis('GET', $url);
-       // print_r($response); die;    
-        return  $response;
+    // public function get_audit()
+    // {
+    //     $url = "https://api.macrotech.com.ng/api/v1/audit-trail";
+    //     $response = $this->call_apis('GET', $url);
+    //    // print_r($response); die;    
+    //     return  $response;
+    // }
+
+    public function get_audit($var = [])
+{
+    $base_url = "https://api.macrotech.com.ng/api/v1/audit-trail";
+
+    // If no date values are provided, fetch all data first
+    if (empty($var['startDate']) && empty($var['endDate'])) {
+        return $this->call_apis('GET', $base_url);
     }
+
+    // Build query parameters dynamically
+    $queryParams = [];
+
+    if (!empty($var['startDate'])) {
+        $queryParams['startDate'] = (new DateTime($var['startDate']))->format('Y-m-d'); // Use '-' instead of '/'
+        
+    }
+
+    if (!empty($var['endDate'])) {
+        $queryParams['endDate'] = (new DateTime($var['endDate']))->format('Y-m-d'); // Use '-' instead of '/'
+    }
+
+    // Manually append query parameters to avoid encoding issues
+    if (!empty($queryParams)) {
+        $base_url .= '?' . urldecode(http_build_query($queryParams));
+        //print_r($base_url); 
+    }
+ // print_r($base_url); 
+    // Call the API
+    $response = $this->call_apis('GET', $base_url);
+  //print_r($response); die;
+    return $response;
+}
 
     public function get_audit_by_id($id)
 {

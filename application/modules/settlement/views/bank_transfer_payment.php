@@ -74,11 +74,19 @@
                                     <thead>
                                     <tr>
                                             <th>#</th>
-                                            <th>Hospital Name</th>
-                                            <th>Email</th>
-                                            <th>Type</th>
-                                            <th>Action</th>
+                                            <th>Transaction Ref</th>
+                                            <th>Transaction Description</th>
+                                            <th>Request Ref</th>
+                                            <th>Transaction Date</th>
+                                            <th>Customer Reference</th>
+                                            <th>Amount</th>
+                                            <th>Payer Name</th>
+                                            <th>Payer Phone</th>
+                                            <th>Payer Email</th>
+                                            <th>Provider</th>
                                             <th>Status</th>
+                                            <th>Requester</th>
+                                            <th>Payment Channel</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -86,11 +94,20 @@
                                         <?php $sn = 1; foreach ($network_result as $transaction): ?>
                                         <tr>
                                             <td><?= $sn++; ?></td>
-                                            <td><?= htmlspecialchars($transaction['Hospital']['hospitalName']); ?>
-                                            <td><?= htmlspecialchars($transaction['user']['email']); ?>
-                                            <td><?= htmlspecialchars($transaction['type'] ?? '-'); ?></td>
-                                            <td><?= htmlspecialchars($transaction['action'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['transaction_ref'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['transaction_desc'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['request_ref'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['time_in'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['customer_ref'] ?? '-'); ?></td>
+                                            <td>₦<?= number_format($transaction['amount'] ?? 0, 2); ?></td>
+                                            <td><?= htmlspecialchars($transaction['customer_firstname'] . ' ' . $transaction['customer_surname'] ?? '-'); ?>
+                                            </td>
+                                            <td><?= htmlspecialchars($transaction['customer_mobile_no'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['customer_email'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['provider'] ?? '-'); ?></td>
                                             <td><?= htmlspecialchars($transaction['status'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['requester'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['transaction_type'] ?? '-'); ?></td>
                                         </tr>
                                         <?php endforeach; ?>
                                         <?php else: ?>
@@ -121,8 +138,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Include SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.10/purify.min.js"></script>
-
 <script>
 $(document).ready(function() {
     console.log("Document is ready!");
@@ -137,7 +152,7 @@ $(document).ready(function() {
         console.log("Start Date:", startDate, "End Date:", endDate);
 
         $.ajax({
-            url: '<?= base_url("audit/index") ?>', // Ensure correct endpoint
+            url: '<?= base_url("settlement/index") ?>', // Ensure correct endpoint
             type: 'POST',
             data: {
                 startDate: startDate,
@@ -147,7 +162,7 @@ $(document).ready(function() {
             beforeSend: function() {
                 console.log("Sending AJAX request...");
                 $('#dataTable tbody').empty().append(
-                    '<tr><td colspan="6" class="text-center">Loading...</td></tr>'
+                    '<tr><td colspan="16" class="text-center">Loading...</td></tr>'
                 ); // Show loading message
             },
             success: function(response) {
@@ -156,39 +171,44 @@ $(document).ready(function() {
                 let tbody = $('#dataTable tbody');
                 tbody.empty(); // Clear existing data
 
-                if (response.status === 'success' && Array.isArray(response.data) && response.data.length > 0) {
+                if (response.status === 'success' && Array.isArray(response.data) &&
+                    response.data.length > 0) {
                     let rows = '';
                     $.each(response.data, function(index, transaction) {
                         rows += `<tr>
                             <td>${index + 1}</td>
-                            <td>${sanitize(transaction.Hospital.hospitalName)}</td>
-                            <td>${sanitize(transaction.user.email)}</td>
-                            <td>${sanitize(transaction.type)}</td>
-                            <td>${sanitize(transaction.action)}</td>
+                            <td>${sanitize(transaction.transaction_ref)}</td>
+                            <td>${sanitize(transaction.transaction_desc)}</td>
+                            <td>${sanitize(transaction.request_ref)}</td>
+                            <td>${sanitize(transaction.time_in)}</td>
+                            <td>${sanitize(transaction.customer_ref)}</td>
+                            <td>₦${parseFloat(transaction.amount || 0).toFixed(2)}</td>
+                            <td>${sanitize(transaction.customer_firstname)} ${sanitize(transaction.customer_surname)}</td>
+                            <td>${sanitize(transaction.customer_mobile_no)}</td>
+                            <td>${sanitize(transaction.customer_email)}</td>
+                            <td>${sanitize(transaction.provider)}</td>
                             <td>${sanitize(transaction.status)}</td>
+                            <td>${sanitize(transaction.requester)}</td>
+                            <td>${sanitize(transaction.transaction_type)}</td>
                         </tr>`;
                     });
                     tbody.append(rows);
                 } else {
                     console.warn("No records found. Clearing table.");
                     tbody.html(
-                        '<tr><td colspan="6" class="text-center text-danger">No transaction data available</td></tr>'
+                        '<tr><td colspan="14" class="text-center text-danger">No transaction data available</td></tr>'
                     );
                 }
             },
+
             error: function(xhr) {
                 console.error("AJAX Error:", xhr.responseText);
                 $('#dataTable tbody').html(
-                    '<tr><td colspan="6" class="text-center text-danger">Error loading data</td></tr>'
+                    '<tr><td colspan="16" class="text-center text-danger">Error loading data</td></tr>'
                 );
             }
         });
     });
 });
-
-function sanitize(str) {
-    return $('<div>').text(str).html();
-}
-
 </script>
 
