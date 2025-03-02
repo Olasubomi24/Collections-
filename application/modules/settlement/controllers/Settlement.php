@@ -249,7 +249,7 @@ public function bank_settlement_index()
 
         // Check if API response contains valid data
         $network_result = $collectionsData['result'] ?? [];
-
+//  print_r($network_result); die;
         $response = [
             'status'  => !empty($network_result) ? 'success' : 'error',
             'message' => !empty($network_result) ? 'Data fetched successfully.' : 'No data found for the selected filters.',

@@ -132,7 +132,7 @@ public function index()
 
         // Check if API response contains valid data
         $network_result = $collectionsData['result']['data'] ?? [];
-        
+       // print_r($network_result); die();    
         $response = [
             'status'  => !empty($network_result) ? 'success' : 'error',
             'message' => !empty($network_result) ? 'Data fetched successfully.' : 'No data found for the selected filters.',
@@ -148,7 +148,7 @@ public function index()
     // If no AJAX request, fetch all data without filters
     $collectionsData = $this->utility->get_audit([]);
     $network_result = $collectionsData['result']['data'] ?? [];
-
+    //print_r($network_result); die(); 
     $data = [
         'title'          => 'Dashboard',
         'content_view'   => 'audit/table',
