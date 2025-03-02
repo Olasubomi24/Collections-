@@ -33,7 +33,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          # Create deployment directory if it doesn't exist
+          # Create deployment directory if it doesn't exists
           sudo mkdir -p /var/www/collection-frontend
           
           # Deploy new code
