@@ -32,6 +32,15 @@ jobs:
         which composer
         composer --version || ~/bin/composer --version
         
+    - name: Fix composer.json case sensitivity
+      run: |
+        # Fix the case sensitivity issue with vfsStream/vfsstream
+        if grep -q "mikey179/vfsStream" composer.json; then
+          echo "Fixing case sensitivity in composer.json..."
+          sed -i 's/"mikey179\/vfsStream"/"mikey179\/vfsstream"/g' composer.json
+          cat composer.json
+        fi
+        
     - name: Install Dependencies
       run: |
         # Use PHP 7.4 with Composer explicitly
@@ -77,7 +86,3 @@ jobs:
         echo "2. Configure Nginx if needed: sudo cp nginx.conf /etc/nginx/conf.d/collection-frontend.conf"
         echo "3. Reload Nginx: sudo systemctl reload nginx"
         echo "4. Restart PHP-FPM: sudo systemctl restart php7.4-fpm"
-        echo ""
-        echo "To run these commands without password prompts, configure passwordless sudo by adding:"
-        echo "your_username ALL=(ALL) NOPASSWD: ALL"
-        echo "to /etc/sudoers.d/github-actions"
