@@ -10,21 +10,48 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Install Dependencies (PHP 7.4)
+    - name: Setup PHP environment
       run: |
-        # Activate phpbrew and switch to PHP 7.4
+        # Check available PHP versions in phpbrew
         source ~/.phpbrew/bashrc
-        phpbrew use 7.4
+        echo "Available PHP versions:"
+        phpbrew list
+        
+        # Try to use PHP 7.4 (with exact version if needed)
+        # If your PHP 7.4 has a different name like php-7.4.33, adjust accordingly
+        if phpbrew list | grep -q "php-7.4"; then
+          phpbrew use php-7.4
+        elif phpbrew list | grep -q "7.4"; then
+          phpbrew use 7.4
+        else
+          echo "PHP 7.4 not found in phpbrew. Using system PHP instead."
+          php --version
+        fi
+        
+    - name: Install Dependencies
+      run: |
+        source ~/.phpbrew/bashrc
+        # Use the appropriate PHP version based on what's available
+        if phpbrew list | grep -q "php-7.4"; then
+          phpbrew use php-7.4
+        elif phpbrew list | grep -q "7.4"; then
+          phpbrew use 7.4
+        fi
+        
+        # Install composer dependencies
         composer install --prefer-dist --no-progress --no-dev
         
     - name: Deploy Application
       run: |
         # Set environment variables
         source ~/.phpbrew/bashrc
-        phpbrew use 7.4
         
-        # Assuming the self-hosted runner has access to the deployment directory
-        # We can directly deploy without SSH
+        # Use the appropriate PHP version based on what's available
+        if phpbrew list | grep -q "php-7.4"; then
+          phpbrew use php-7.4
+        elif phpbrew list | grep -q "7.4"; then
+          phpbrew use 7.4
+        fi
         
         # Copy application files to deployment directory
         rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
@@ -42,10 +69,16 @@ jobs:
     - name: Configure and Restart Services
       run: |
         # Nginx config
-        [ ! -f /etc/nginx/conf.d/collection-frontend.conf ] && sudo cp nginx.conf /etc/nginx/conf.d/
+        [ ! -f /etc/nginx/conf.d/collection-frontend.conf ] && sudo cp nginx.conf /etc/nginx/conf.d/ || echo "Nginx config already exists"
         
         # Validate and reload Nginx
         sudo nginx -t && sudo systemctl reload nginx
         
-        # Restart PHP 7.4-FPM
-        sudo systemctl restart php7.4-fpm
+        # Restart PHP-FPM (adjust the service name if needed)
+        if systemctl list-unit-files | grep -q "php7.4-fpm.service"; then
+          sudo systemctl restart php7.4-fpm
+        else
+          echo "Looking for available PHP-FPM services:"
+          systemctl list-unit-files | grep "php.*-fpm"
+          echo "Please adjust the workflow to use the correct PHP-FPM service"
+        fi
