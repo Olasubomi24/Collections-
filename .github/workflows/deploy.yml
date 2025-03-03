@@ -49,57 +49,40 @@ jobs:
         
     - name: Deploy Application
       run: |
-        # Create deployment directory if it doesn't exist
-        sudo mkdir -p /var/www/collection-frontend
-        
-        # Copy application files to deployment directory
-        sudo rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
-        
-        # Navigate to deployment directory
-        cd /var/www/collection-frontend
-        
-        # Install dependencies with PHP 7.4
-        COMPOSER=$(which composer || echo "$HOME/bin/composer")
-        sudo php7.4 $COMPOSER install --no-dev --optimize-autoloader
-        
-        # Set permissions for writable directories
-        sudo chmod -R 755 /var/www/collection-frontend/application/cache
-        sudo chmod -R 755 /var/www/collection-frontend/application/logs
-    
-    - name: Automated Post-Deployment Steps
-      run: |
-        echo "Performing automated post-deployment steps..."
-        
-        # Set proper ownership
-        sudo chown -R www-data:www-data /var/www/collection-frontend/application/cache
-        sudo chown -R www-data:www-data /var/www/collection-frontend/application/logs
-        
-        # Copy Nginx config ONLY if target file doesn't exist
-        if [ -f "$(pwd)/nginx.conf" ] && [ ! -f "/etc/nginx/conf.d/collection-frontend.conf" ]; then
-          echo "Nginx config not found, installing it..."
-          sudo cp "$(pwd)/nginx.conf" /etc/nginx/conf.d/collection-frontend.conf
-          echo "Nginx config installed."
-        else
-          if [ -f "/etc/nginx/conf.d/collection-frontend.conf" ]; then
-            echo "Nginx config already exists, skipping..."
+        # Determine if we have write access to the target directory
+        if [ -w /var/www/collection-frontend ] || [ -w /var/www ]; then
+          # Create deployment directory if it doesn't exist
+          mkdir -p /var/www/collection-frontend
+          
+          # Copy application files to deployment directory
+          rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
+          
+          # Navigate to deployment directory
+          cd /var/www/collection-frontend
+          
+          # Install dependencies with PHP 7.4
+          COMPOSER=$(which composer || echo "$HOME/bin/composer")
+          php7.4 $COMPOSER install --no-dev --optimize-autoloader
+          
+          # Set permissions if possible
+          if [ -w /var/www/collection-frontend/writable ]; then
+            chmod -R 755 writable
           else
-            echo "No nginx.conf found in repository, skipping..."
+            echo "Warning: Cannot set permissions on writable directory"
           fi
+        else
+          echo "ERROR: No write access to /var/www/collection-frontend"
+          echo "Please ensure the runner has proper permissions or configure sudo without password"
+          echo "Run: echo 'runner_user ALL=(ALL) NOPASSWD: ALL' | sudo tee /etc/sudoers.d/runner_user"
+          exit 1
         fi
         
-        # Reload Nginx
-        sudo systemctl reload nginx
-        
-        # Restart PHP-FPM
-        sudo systemctl restart php7.4-fpm
-        
-        echo "Post-deployment steps completed successfully!"
-        
-    - name: Deployment Summary
+    - name: Final Steps
       run: |
-        echo "========== Deployment Complete =========="
-        echo "Application deployed to: /var/www/collection-frontend"
-        echo "Timestamp: $(date)"
-        echo "Commit: $(git rev-parse HEAD)"
-        echo "Branch: $(git rev-parse --abbrev-ref HEAD)"
-        echo "========================================"
+        echo "Deployment completed to /var/www/collection-frontend"
+        echo ""
+        echo "IMPORTANT: Manual steps required (needs sudo access):"
+        echo "1. Set proper ownership: sudo chown -R www-data:www-data /var/www/collection-frontend/writable"
+        echo "2. Configure Nginx if needed: sudo cp nginx.conf /etc/nginx/conf.d/collection-frontend.conf"
+        echo "3. Reload Nginx: sudo systemctl reload nginx"
+        echo "4. Restart PHP-FPM: sudo systemctl restart php7.4-fpm"
