@@ -10,75 +10,76 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Setup PHP environment
+    - name: Install PHP 7.4
       run: |
-        # Check available PHP versions in phpbrew
-        source ~/.phpbrew/bashrc
-        echo "Available PHP versions:"
-        phpbrew list
+        echo "Current PHP version:"
+        php -v
         
-        # Try to use PHP 7.4 (with exact version if needed)
-        # If your PHP 7.4 has a different name like php-7.4.33, adjust accordingly
-        if phpbrew list | grep -q "php-7.4"; then
-          phpbrew use php-7.4
-        elif phpbrew list | grep -q "7.4"; then
-          phpbrew use 7.4
+        # Check if PHP 7.4 is already installed
+        if command -v php7.4 &> /dev/null; then
+          echo "PHP 7.4 is already installed"
         else
-          echo "PHP 7.4 not found in phpbrew. Using system PHP instead."
-          php --version
+          echo "Installing PHP 7.4..."
+          # Add PPA for multiple PHP versions
+          sudo apt-get update
+          sudo apt-get install -y software-properties-common
+          sudo add-apt-repository -y ppa:ondrej/php
+          sudo apt-get update
+          
+          # Install PHP 7.4 and necessary extensions for CodeIgniter
+          sudo apt-get install -y php7.4 php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-mysql php7.4-mbstring php7.4-zip php7.4-fpm php7.4-xml php7.4-curl
         fi
+        
+        # Verify PHP 7.4 installation
+        php7.4 -v
+      
+    - name: Install Composer
+      run: |
+        # Check if Composer is installed
+        if ! command -v composer &> /dev/null; then
+          echo "Installing Composer..."
+          curl -sS https://getcomposer.org/installer | php7.4
+          sudo mv composer.phar /usr/local/bin/composer
+        fi
+        
+        # Verify Composer installation
+        composer --version
         
     - name: Install Dependencies
       run: |
-        source ~/.phpbrew/bashrc
-        # Use the appropriate PHP version based on what's available
-        if phpbrew list | grep -q "php-7.4"; then
-          phpbrew use php-7.4
-        elif phpbrew list | grep -q "7.4"; then
-          phpbrew use 7.4
-        fi
-        
-        # Install composer dependencies
-        composer install --prefer-dist --no-progress --no-dev
+        # Use PHP 7.4 with Composer
+        php7.4 $(which composer) install --prefer-dist --no-progress --no-dev
         
     - name: Deploy Application
       run: |
-        # Set environment variables
-        source ~/.phpbrew/bashrc
-        
-        # Use the appropriate PHP version based on what's available
-        if phpbrew list | grep -q "php-7.4"; then
-          phpbrew use php-7.4
-        elif phpbrew list | grep -q "7.4"; then
-          phpbrew use 7.4
-        fi
+        # Create deployment directory if it doesn't exist
+        sudo mkdir -p /var/www/collection-frontend
         
         # Copy application files to deployment directory
-        rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
+        sudo rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
         
         # Navigate to deployment directory
         cd /var/www/collection-frontend
         
         # Install dependencies with PHP 7.4
-        composer install --no-dev --optimize-autoloader
+        php7.4 $(which composer) install --no-dev --optimize-autoloader
         
         # Set permissions
-        chmod -R 755 writable
+        sudo chmod -R 755 writable
         sudo chown -R www-data:www-data writable
         
     - name: Configure and Restart Services
       run: |
-        # Nginx config
-        [ ! -f /etc/nginx/conf.d/collection-frontend.conf ] && sudo cp nginx.conf /etc/nginx/conf.d/ || echo "Nginx config already exists"
-        
-        # Validate and reload Nginx
-        sudo nginx -t && sudo systemctl reload nginx
-        
-        # Restart PHP-FPM (adjust the service name if needed)
-        if systemctl list-unit-files | grep -q "php7.4-fpm.service"; then
-          sudo systemctl restart php7.4-fpm
+        # Check if nginx.conf exists in the current directory
+        if [ -f nginx.conf ]; then
+          # Nginx config
+          [ ! -f /etc/nginx/conf.d/collection-frontend.conf ] && sudo cp nginx.conf /etc/nginx/conf.d/ || echo "Nginx config already exists"
+          
+          # Validate and reload Nginx
+          sudo nginx -t && sudo systemctl reload nginx
         else
-          echo "Looking for available PHP-FPM services:"
-          systemctl list-unit-files | grep "php.*-fpm"
-          echo "Please adjust the workflow to use the correct PHP-FPM service"
+          echo "Warning: nginx.conf not found in repository"
         fi
+        
+        # Make sure PHP 7.4-FPM is running
+        sudo systemctl restart php7.4-fpm
