@@ -979,13 +979,13 @@ public function update_user($id, $data)
         $base_url .= '?' . urldecode(http_build_query($queryParams));
     
         // Log the final API URL (for debugging)
-        log_message('debug', 'API Request URL: ' . $base_url);
+       // log_message('debug', 'API Request URL: ' . $base_url);
     
         // Call the API
         $response = $this->call_apis('GET', $base_url);
     
         // Log the API response (for debugging)
-        log_message('debug', 'API Response: ' . json_encode($response));
+        //log_message('debug', 'API Response: ' . json_encode($response));
     
         return $response;
     }
