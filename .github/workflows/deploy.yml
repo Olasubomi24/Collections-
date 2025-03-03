@@ -10,28 +10,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Install PHP 7.4
+    - name: Verify PHP 7.4
       run: |
-        echo "Current PHP version:"
-        php -v
-        
-        # Check if PHP 7.4 is already installed
-        if command -v php7.4 &> /dev/null; then
-          echo "PHP 7.4 is already installed"
-        else
-          echo "Installing PHP 7.4..."
-          # Add PPA for multiple PHP versions
-          sudo apt-get update
-          sudo apt-get install -y software-properties-common
-          sudo add-apt-repository -y ppa:ondrej/php
-          sudo apt-get update
-          
-          # Install PHP 7.4 and necessary extensions for CodeIgniter
-          sudo apt-get install -y php7.4 php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-mysql php7.4-mbstring php7.4-zip php7.4-fpm php7.4-xml php7.4-curl
-        fi
-        
-        # Verify PHP 7.4 installation
+        # Verify PHP 7.4 is installed and working
         php7.4 -v
+        
+        # Check PHP-FPM status
+        sudo systemctl status php7.4-fpm
       
     - name: Install Composer
       run: |
@@ -47,7 +32,7 @@ jobs:
         
     - name: Install Dependencies
       run: |
-        # Use PHP 7.4 with Composer
+        # Use PHP 7.4 with Composer explicitly
         php7.4 $(which composer) install --prefer-dist --no-progress --no-dev
         
     - name: Deploy Application
@@ -68,18 +53,41 @@ jobs:
         sudo chmod -R 755 writable
         sudo chown -R www-data:www-data writable
         
-    - name: Configure and Restart Services
+    - name: Configure Nginx
       run: |
         # Check if nginx.conf exists in the current directory
         if [ -f nginx.conf ]; then
           # Nginx config
-          [ ! -f /etc/nginx/conf.d/collection-frontend.conf ] && sudo cp nginx.conf /etc/nginx/conf.d/ || echo "Nginx config already exists"
+          if [ ! -f /etc/nginx/conf.d/collection-frontend.conf ]; then
+            sudo cp nginx.conf /etc/nginx/conf.d/collection-frontend.conf
+            echo "Nginx configuration copied to /etc/nginx/conf.d/"
+          else
+            echo "Nginx config already exists"
+          fi
           
-          # Validate and reload Nginx
-          sudo nginx -t && sudo systemctl reload nginx
+          # Validate Nginx configuration
+          echo "Validating Nginx configuration..."
+          sudo nginx -t
+          
+          # If validation successful, reload Nginx
+          if [ $? -eq 0 ]; then
+            echo "Reloading Nginx..."
+            sudo systemctl reload nginx
+          else
+            echo "Nginx configuration is invalid, not reloading"
+            exit 1
+          fi
         else
           echo "Warning: nginx.conf not found in repository"
         fi
         
-        # Make sure PHP 7.4-FPM is running
+    - name: Configure PHP-FPM
+      run: |
+        # Make sure the correct PHP-FPM version is running
+        echo "Restarting PHP 7.4-FPM..."
         sudo systemctl restart php7.4-fpm
+        
+        # Verify PHP-FPM is running
+        sudo systemctl status php7.4-fpm
+        
+        echo "Deployment complete!"
