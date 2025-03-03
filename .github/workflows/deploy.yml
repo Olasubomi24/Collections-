@@ -58,10 +58,10 @@ jobs:
         # Navigate to deployment directory
         cd /var/www/collection-frontend
         
-        # Install dependencies with PHP 7.4
+        # Set COMPOSER_ALLOW_SUPERUSER environment variable and install dependencies
+        # Fix: Avoid using sudo -E and set variable directly in the sudo command
         COMPOSER=$(which composer || echo "$HOME/bin/composer")
-        export COMPOSER_ALLOW_SUPERUSER=1
-        sudo -E php7.4 $COMPOSER install --no-dev --optimize-autoloader
+        sudo COMPOSER_ALLOW_SUPERUSER=1 php7.4 $COMPOSER install --no-dev --optimize-autoloader
         
         # Create writable directories if they don't exist
         sudo mkdir -p /var/www/collection-frontend/application/cache
