@@ -1,9 +1,7 @@
-name: Production Deployment
-
+name: Deploy CodeIgniter to Ubuntu
 on:
   push:
     branches: [main]
-
 jobs:
   deploy:
     runs-on: [self-hosted, Linux, X64, macrotech-actions-runner]
@@ -11,30 +9,43 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
-    - name: Clean Existing Builders
+      
+    - name: Install Dependencies (PHP 7.4)
       run: |
-        if docker buildx inspect mybuilder >/dev/null 2>&1; then
-          docker buildx rm mybuilder || true
-        fi
-
-    - name: Set up Buildx
+        # Activate phpbrew and switch to PHP 7.4
+        source ~/.phpbrew/bashrc
+        phpbrew use 7.4
+        composer install --prefer-dist --no-progress --no-dev
+        
+    - name: Deploy Application
       run: |
-        docker buildx create --name mybuilder --use
-        docker buildx inspect --bootstrap
-
-    - name: Build Docker Image
-      run: |
+        # Set environment variables
+        source ~/.phpbrew/bashrc
+        phpbrew use 7.4
+        
+        # Assuming the self-hosted runner has access to the deployment directory
+        # We can directly deploy without SSH
+        
+        # Copy application files to deployment directory
+        rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
+        
+        # Navigate to deployment directory
         cd /var/www/collection-frontend
-        docker buildx build \
-          -f docker/php/Dockerfile \
-          -t codeigniter-frontend:latest \
-          --load .
-
-    - name: Deploy Stack
+        
+        # Install dependencies with PHP 7.4
+        composer install --no-dev --optimize-autoloader
+        
+        # Set permissions
+        chmod -R 755 writable
+        sudo chown -R www-data:www-data writable
+        
+    - name: Configure and Restart Services
       run: |
-        cd /var/www/collection-frontend
-        docker-compose down
-        docker-compose up -d --build
-        docker exec app chmod -R 755 writable
-        docker exec app chown -R www-data:www-data writable
+        # Nginx config
+        [ ! -f /etc/nginx/conf.d/collection-frontend.conf ] && sudo cp nginx.conf /etc/nginx/conf.d/
+        
+        # Validate and reload Nginx
+        sudo nginx -t && sudo systemctl reload nginx
+        
+        # Restart PHP 7.4-FPM
+        sudo systemctl restart php7.4-fpm
