@@ -14,9 +14,6 @@ jobs:
       run: |
         # Verify PHP 7.4 is installed and working
         php7.4 -v
-        
-        # Check PHP-FPM status
-        sudo systemctl status php7.4-fpm
       
     - name: Install Composer
       run: |
@@ -24,70 +21,63 @@ jobs:
         if ! command -v composer &> /dev/null; then
           echo "Installing Composer..."
           curl -sS https://getcomposer.org/installer | php7.4
-          sudo mv composer.phar /usr/local/bin/composer
+          # Install locally if sudo is not available
+          mkdir -p ~/bin
+          mv composer.phar ~/bin/composer
+          chmod +x ~/bin/composer
+          export PATH="$HOME/bin:$PATH"
         fi
         
         # Verify Composer installation
-        composer --version
+        which composer
+        composer --version || ~/bin/composer --version
         
     - name: Install Dependencies
       run: |
         # Use PHP 7.4 with Composer explicitly
-        php7.4 $(which composer) install --prefer-dist --no-progress --no-dev
+        COMPOSER=$(which composer || echo "$HOME/bin/composer")
+        php7.4 $COMPOSER install --prefer-dist --no-progress --no-dev
         
     - name: Deploy Application
       run: |
-        # Create deployment directory if it doesn't exist
-        sudo mkdir -p /var/www/collection-frontend
-        
-        # Copy application files to deployment directory
-        sudo rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
-        
-        # Navigate to deployment directory
-        cd /var/www/collection-frontend
-        
-        # Install dependencies with PHP 7.4
-        php7.4 $(which composer) install --no-dev --optimize-autoloader
-        
-        # Set permissions
-        sudo chmod -R 755 writable
-        sudo chown -R www-data:www-data writable
-        
-    - name: Configure Nginx
-      run: |
-        # Check if nginx.conf exists in the current directory
-        if [ -f nginx.conf ]; then
-          # Nginx config
-          if [ ! -f /etc/nginx/conf.d/collection-frontend.conf ]; then
-            sudo cp nginx.conf /etc/nginx/conf.d/collection-frontend.conf
-            echo "Nginx configuration copied to /etc/nginx/conf.d/"
-          else
-            echo "Nginx config already exists"
-          fi
+        # Determine if we have write access to the target directory
+        if [ -w /var/www/collection-frontend ] || [ -w /var/www ]; then
+          # Create deployment directory if it doesn't exist
+          mkdir -p /var/www/collection-frontend
           
-          # Validate Nginx configuration
-          echo "Validating Nginx configuration..."
-          sudo nginx -t
+          # Copy application files to deployment directory
+          rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
           
-          # If validation successful, reload Nginx
-          if [ $? -eq 0 ]; then
-            echo "Reloading Nginx..."
-            sudo systemctl reload nginx
+          # Navigate to deployment directory
+          cd /var/www/collection-frontend
+          
+          # Install dependencies with PHP 7.4
+          COMPOSER=$(which composer || echo "$HOME/bin/composer")
+          php7.4 $COMPOSER install --no-dev --optimize-autoloader
+          
+          # Set permissions if possible
+          if [ -w /var/www/collection-frontend/writable ]; then
+            chmod -R 755 writable
           else
-            echo "Nginx configuration is invalid, not reloading"
-            exit 1
+            echo "Warning: Cannot set permissions on writable directory"
           fi
         else
-          echo "Warning: nginx.conf not found in repository"
+          echo "ERROR: No write access to /var/www/collection-frontend"
+          echo "Please ensure the runner has proper permissions or configure sudo without password"
+          echo "Run: echo 'runner_user ALL=(ALL) NOPASSWD: ALL' | sudo tee /etc/sudoers.d/runner_user"
+          exit 1
         fi
         
-    - name: Configure PHP-FPM
+    - name: Final Steps
       run: |
-        # Make sure the correct PHP-FPM version is running
-        echo "Restarting PHP 7.4-FPM..."
-        sudo systemctl restart php7.4-fpm
-        
-        # Verify PHP-FPM is running
-        sudo systemctl status php7.4-fpm
-        
-        echo "Deployment complete!"
+        echo "Deployment completed to /var/www/collection-frontend"
+        echo ""
+        echo "IMPORTANT: Manual steps required (needs sudo access):"
+        echo "1. Set proper ownership: sudo chown -R www-data:www-data /var/www/collection-frontend/writable"
+        echo "2. Configure Nginx if needed: sudo cp nginx.conf /etc/nginx/conf.d/collection-frontend.conf"
+        echo "3. Reload Nginx: sudo systemctl reload nginx"
+        echo "4. Restart PHP-FPM: sudo systemctl restart php7.4-fpm"
+        echo ""
+        echo "To run these commands without password prompts, configure passwordless sudo by adding:"
+        echo "your_username ALL=(ALL) NOPASSWD: ALL"
+        echo "to /etc/sudoers.d/github-actions"
