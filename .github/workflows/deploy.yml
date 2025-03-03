@@ -62,21 +62,15 @@ jobs:
         COMPOSER=$(which composer || echo "$HOME/bin/composer")
         sudo php7.4 $COMPOSER install --no-dev --optimize-autoloader
         
-        # Create writable directories if they don't exist
-        sudo mkdir -p /var/www/collection-frontend/application/cache
-        sudo mkdir -p /var/www/collection-frontend/application/logs
-        
-        # Set permissions for writable directories
-        sudo chmod -R 755 /var/www/collection-frontend/application/cache
-        sudo chmod -R 755 /var/www/collection-frontend/application/logs
+        # Set permissions
+        sudo chmod -R 755 /var/www/collection-frontend/writable
     
     - name: Automated Post-Deployment Steps
       run: |
         echo "Performing automated post-deployment steps..."
         
-        # Set proper ownership for writable directories
-        sudo chown -R www-data:www-data /var/www/collection-frontend/application/cache
-        sudo chown -R www-data:www-data /var/www/collection-frontend/application/logs
+        # Set proper ownership
+        sudo chown -R www-data:www-data /var/www/collection-frontend/writable
         
         # Copy Nginx config ONLY if target file doesn't exist
         if [ -f "$(pwd)/nginx.conf" ] && [ ! -f "/etc/nginx/conf.d/collection-frontend.conf" ]; then
