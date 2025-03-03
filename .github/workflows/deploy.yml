@@ -58,15 +58,9 @@ jobs:
         # Navigate to deployment directory
         cd /var/www/collection-frontend
         
-        # Handle composer installation without environment variables
-        # First create a temporary script that sets the environment variable
+        # Install dependencies with PHP 7.4
         COMPOSER=$(which composer || echo "$HOME/bin/composer")
-        echo '#!/bin/bash
-COMPOSER_ALLOW_SUPERUSER=1 php7.4 '$COMPOSER' install --no-dev --optimize-autoloader
-' > /tmp/composer_install.sh
-        chmod +x /tmp/composer_install.sh
-        sudo /tmp/composer_install.sh
-        rm /tmp/composer_install.sh
+        sudo php7.4 $COMPOSER install --no-dev --optimize-autoloader
         
         # Create writable directories if they don't exist
         sudo mkdir -p /var/www/collection-frontend/application/cache
