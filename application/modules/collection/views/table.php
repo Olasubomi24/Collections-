@@ -265,12 +265,13 @@ $(document).ready(function() {
                                 <h4><?= $_SESSION['hospital_name'] ?></h4>
                             </div>
                         </div>
-                        <h1>BILLING RECEIPT</h1>
+                        <p>BILLING RECEIPT</p>
                     </div>
                     <div class="details">
                         <p><strong>Invoice No:</strong> ${data.invoiceNo || '-'}</p>
                         <p><strong>Description:</strong> ${data.invoiceDescription || '-'}</p>
                         <p><strong>RRR No:</strong> ${data.rrrNo || '-'}</p>
+                        <p><strong>Invoice UHID:</strong> ${data.invoiceUHID || '-'}</p>
                         <p><strong>Date:</strong> ${data.invoiceDate || '-'}</p>
                         <p><strong>Payer Name:</strong> ${data.invoicePayerName || '-'}</p>
                         <p><strong>Phone:</strong> ${data.invoicePayerPhoneNo || '-'}</p>
@@ -278,6 +279,7 @@ $(document).ready(function() {
                         <p><strong>Amount:</strong> ₦${parseFloat(data.invoiceAmount || 0).toFixed(2)}</p>
                         <p><strong>Total Payable:</strong> ₦${parseFloat(data.invoiceTotalPayable || 0).toFixed(2)}</p>
                         <p><strong>Payment Status:</strong> ${data.invoicePOSPaymentStatus || '-'}</p>
+                         <p><strong>Notification Status:</strong> ${data.notificationStatus || '-'}</p>
                         <p><strong>Remarks:</strong> ${data.remarks || '-'}</p>
                     </div>
                     <hr>
