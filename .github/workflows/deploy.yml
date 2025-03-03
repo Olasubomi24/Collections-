@@ -49,40 +49,25 @@ jobs:
         
     - name: Deploy Application
       run: |
-        # Determine if we have write access to the target directory
-        if [ -w /var/www/collection-frontend ] || [ -w /var/www ]; then
-          # Create deployment directory if it doesn't exist
-          mkdir -p /var/www/collection-frontend
-          
-          # Copy application files to deployment directory
-          rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
-          
-          # Navigate to deployment directory
-          cd /var/www/collection-frontend
-          
-          # Install dependencies with PHP 7.4
-          COMPOSER=$(which composer || echo "$HOME/bin/composer")
-          php7.4 $COMPOSER install --no-dev --optimize-autoloader
-          
-          # Set permissions if possible
-          if [ -w /var/www/collection-frontend/writable ]; then
-            chmod -R 755 writable
-          else
-            echo "Warning: Cannot set permissions on writable directory"
-          fi
-        else
-          echo "ERROR: No write access to /var/www/collection-frontend"
-          echo "Please ensure the runner has proper permissions or configure sudo without password"
-          exit 1
-        fi
+        # Create deployment directory if it doesn't exist
+        sudo mkdir -p /var/www/collection-frontend
+        
+        # Copy application files to deployment directory
+        sudo rsync -avz --exclude='.git' --exclude='.github' --exclude='node_modules' --delete ./ /var/www/collection-frontend/
+        
+        # Navigate to deployment directory
+        cd /var/www/collection-frontend
+        
+        # Install dependencies with PHP 7.4
+        COMPOSER=$(which composer || echo "$HOME/bin/composer")
+        sudo php7.4 $COMPOSER install --no-dev --optimize-autoloader
+        
+        # Set permissions
+        sudo chmod -R 755 /var/www/collection-frontend/writable
     
     - name: Automated Post-Deployment Steps
       run: |
         echo "Performing automated post-deployment steps..."
-        
-        # Create a shell script to handle sudo operations
-        cat > ~/deploy_finalize.sh << 'EOF'
-        #!/bin/bash
         
         # Set proper ownership
         sudo chown -R www-data:www-data /var/www/collection-frontend/writable
@@ -107,21 +92,6 @@ jobs:
         sudo systemctl restart php7.4-fpm
         
         echo "Post-deployment steps completed successfully!"
-        EOF
-        
-        # Make script executable
-        chmod +x ~/deploy_finalize.sh
-        
-        # Execute the script with sudo (requires passwordless sudo)
-        if sudo -n true 2>/dev/null; then
-          # We have passwordless sudo access
-          ~/deploy_finalize.sh
-        else
-          echo "ERROR: No passwordless sudo access. Cannot complete automated deployment."
-          echo "To automate this, please add the following to /etc/sudoers.d/github-actions:"
-          echo "$(whoami) ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart php7.4-fpm, /usr/bin/systemctl reload nginx, /bin/cp /home/$(whoami)/macrotech-actions-runner/_work/hospital-collection-frontend/hospital-collection-frontend/nginx.conf /etc/nginx/conf.d/, /bin/chown -R www-data\\:www-data /var/www/collection-frontend/writable"
-          exit 1
-        fi
         
     - name: Deployment Summary
       run: |
