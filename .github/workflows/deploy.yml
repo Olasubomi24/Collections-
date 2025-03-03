@@ -60,17 +60,24 @@ jobs:
         
         # Install dependencies with PHP 7.4
         COMPOSER=$(which composer || echo "$HOME/bin/composer")
-        sudo php7.4 $COMPOSER install --no-dev --optimize-autoloader
+        export COMPOSER_ALLOW_SUPERUSER=1
+        sudo -E php7.4 $COMPOSER install --no-dev --optimize-autoloader
         
-        # Set permissions
-        sudo chmod -R 755 /var/www/collection-frontend/writable
+        # Create writable directories if they don't exist
+        sudo mkdir -p /var/www/collection-frontend/application/cache
+        sudo mkdir -p /var/www/collection-frontend/application/logs
+        
+        # Set permissions for writable directories
+        sudo chmod -R 755 /var/www/collection-frontend/application/cache
+        sudo chmod -R 755 /var/www/collection-frontend/application/logs
     
     - name: Automated Post-Deployment Steps
       run: |
         echo "Performing automated post-deployment steps..."
         
-        # Set proper ownership
-        sudo chown -R www-data:www-data /var/www/collection-frontend/writable
+        # Set proper ownership for writable directories
+        sudo chown -R www-data:www-data /var/www/collection-frontend/application/cache
+        sudo chown -R www-data:www-data /var/www/collection-frontend/application/logs
         
         # Copy Nginx config ONLY if target file doesn't exist
         if [ -f "$(pwd)/nginx.conf" ] && [ ! -f "/etc/nginx/conf.d/collection-frontend.conf" ]; then
