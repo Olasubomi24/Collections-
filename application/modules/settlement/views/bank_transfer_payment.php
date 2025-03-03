@@ -99,7 +99,7 @@
                                             <td><?= htmlspecialchars($transaction['request_ref'] ?? '-'); ?></td>
                                             <td><?= htmlspecialchars($transaction['time_in'] ?? '-'); ?></td>
                                             <td><?= htmlspecialchars($transaction['customer_ref'] ?? '-'); ?></td>
-                                            <td>₦<?= number_format(((int) ($transaction['amount'] ?? 0)) / 100, 2); ?></td>
+                                            <td>₦<?= number_format(((int) ($transaction['amount'] ?? 0))); ?></td>
                                             <td><?= htmlspecialchars($transaction['customer_firstname'] . ' ' . $transaction['customer_surname'] ?? '-'); ?>
                                             </td>
                                             <td><?= htmlspecialchars($transaction['customer_mobile_no'] ?? '-'); ?></td>
