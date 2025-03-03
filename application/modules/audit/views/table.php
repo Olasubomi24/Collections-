@@ -3,7 +3,7 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>Audit logs</h2>
+                    <h2>Audit log</h2>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button">
                         <i class="zmdi zmdi-sort-amount-desc"></i>
                     </button>
