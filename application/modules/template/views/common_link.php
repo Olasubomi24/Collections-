@@ -68,8 +68,8 @@ if (!isset($_SESSION['email'])) {
                     <li><a href="<?php echo base_url('settlement/index'); ?>">Settlements Details</a></li>
                     <li><a href="<?php echo base_url('settlement/partner_index'); ?>">Partner Settlement Summary</a>
                     </li>
-                    <li><a href="<?php  //echo base_url('settlement/index'); ?>">settlements</a></li>
-                    <li><a href="<?php //echo base_url('wallet_funding/index'); ?>">wallet funding</a></li>
+                    <!-- <li><a href="<?php  //echo base_url('settlement/index'); ?>">settlements</a></li>
+                    <li><a href="<?php //echo base_url('wallet_funding/index'); ?>">wallet funding</a></li> -->
                 </ul>
             </li>
             <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i

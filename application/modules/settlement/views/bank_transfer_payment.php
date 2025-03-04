@@ -94,12 +94,12 @@
                                         <?php $sn = 1; foreach ($network_result as $transaction): ?>
                                         <tr>
                                             <td><?= $sn++; ?></td>
-                                            <td><?= htmlspecialchars($transaction['transaction_ref'] ?? '-'); ?></td>
+                                            <td><?= htmlspecialchars($transaction['transaction_ref'] ?? '-', ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td><?= htmlspecialchars($transaction['transaction_desc'] ?? '-'); ?></td>
                                             <td><?= htmlspecialchars($transaction['request_ref'] ?? '-'); ?></td>
                                             <td><?= htmlspecialchars($transaction['time_in'] ?? '-'); ?></td>
                                             <td><?= htmlspecialchars($transaction['customer_ref'] ?? '-'); ?></td>
-                                            <td>₦<?= number_format(((int) ($transaction['amount'] ?? 0))); ?></td>
+                                            <td><?= number_format(((int) ($transaction['amount'] ?? 0))); ?></td>
                                             <td><?= htmlspecialchars($transaction['customer_firstname'] . ' ' . $transaction['customer_surname'] ?? '-'); ?>
                                             </td>
                                             <td><?= htmlspecialchars($transaction['customer_mobile_no'] ?? '-'); ?></td>
@@ -182,7 +182,7 @@ $(document).ready(function() {
                             <td>${sanitize(transaction.request_ref)}</td>
                             <td>${sanitize(transaction.time_in)}</td>
                             <td>${sanitize(transaction.customer_ref)}</td>
-                            <td>₦${parseFloat(transaction.amount || 0).toFixed(2)}</td>
+                            <td>${parseFloat(transaction.amount || 0).toFixed(2)}</td>
                             <td>${sanitize(transaction.customer_firstname)} ${sanitize(transaction.customer_surname)}</td>
                             <td>${sanitize(transaction.customer_mobile_no)}</td>
                             <td>${sanitize(transaction.customer_email)}</td>
